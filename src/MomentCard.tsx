@@ -19,10 +19,10 @@ const MomentCard = (props: Props) => {
     <Card>
       <CardHeader>
         <CardTitle>{props.moment.title}</CardTitle>
-        <CardDescription>{props.moment.description}</CardDescription>
+        <CardDescription>{props.moment.headline}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <p>{props.moment.description}</p>
       </CardContent>
       <CardFooter>
         <Button variant="outline">Favorite</Button>
