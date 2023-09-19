@@ -7,15 +7,15 @@ import Favorites from "./Favorites";
 function App() {
   return (
     <>
-      <Navbar />
-      <main className="container mx-auto">
-        <BrowserRouter>
+      <BrowserRouter>
+        <Navbar />
+        <main className="container mx-auto">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/favorites" element={<Favorites />} />
           </Routes>
-        </BrowserRouter>
-      </main>
+        </main>
+      </BrowserRouter>
     </>
   );
 }
