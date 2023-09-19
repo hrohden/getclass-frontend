@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 import { Moment } from "./Moment";
 
@@ -24,7 +25,7 @@ const MomentCard = (props: Props) => {
         <p>Card Content</p>
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <Button variant="outline">Favorite</Button>
       </CardFooter>
     </Card>
   );
