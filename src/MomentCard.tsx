@@ -1,3 +1,12 @@
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 import { Moment } from "./Moment";
 
 type Props = {
@@ -6,10 +15,18 @@ type Props = {
 
 const MomentCard = (props: Props) => {
   return (
-    <div>
-      <h2>{props.moment.title}</h2>
-      <p>{props.moment.description}</p>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>{props.moment.title}</CardTitle>
+        <CardDescription>{props.moment.description}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Card Content</p>
+      </CardContent>
+      <CardFooter>
+        <p>Card Footer</p>
+      </CardFooter>
+    </Card>
   );
 };
 
