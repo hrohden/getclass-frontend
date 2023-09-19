@@ -5,6 +5,7 @@ import MomentCard from "./MomentCard";
 const Home = () => {
   const [moments] = useState<Moment[]>([
     {
+      id: '1',
       title: "Trip to NYC",
       headline: "My trip to NY with my wife",
       description:
@@ -12,6 +13,7 @@ const Home = () => {
       isFavorite: false,
     },
     {
+      id: '2',
       title: "Trip to Europe",
       headline: "My trip to Europe with my wife in 2014",
       description:
@@ -32,7 +34,7 @@ const Home = () => {
         <p>Currently, there are no moments to display</p>
       )}
       {moments.map((moment) => (
-        <MomentCard moment={moment}></MomentCard>
+        <MomentCard moment={moment} key={moment.id}></MomentCard>
       ))}
     </main>
   );
