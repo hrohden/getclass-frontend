@@ -23,7 +23,7 @@ const Home = () => {
   ]);
   
   return (
-    <main className="container mx-auto">
+    <>
       <h1 className="text-6xl font-bold tracking-tight pb-4">All moments</h1>
       <div className="space-y-0.5">
         <p className="text-muted-foreground">
@@ -36,7 +36,7 @@ const Home = () => {
       {moments.map((moment) => (
         <MomentCard moment={moment} key={moment.id}></MomentCard>
       ))}
-    </main>
+    </>
   );
 };
 export default Home;
