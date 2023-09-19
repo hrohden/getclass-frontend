@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import MomentCard from "./MomentCard";
 import { Moment } from "./Moment";
+import Navbar from "./Navbar";
 
 function App() {
   const [moments] = useState<Moment[]>([
@@ -23,13 +24,12 @@ function App() {
 
   return (
     <>
-      <main className="m-4">
-        <h1 className="text-6xl font-bold tracking-tight pb-4">Moments</h1>
+      <Navbar />
+      <main className="container mx-auto">
+        <h1 className="text-6xl font-bold tracking-tight pb-4">All moments</h1>
         <div className="space-y-0.5">
-          <h2 className="text-2xl font-bold tracking-tight">All moments</h2>
           <p className="text-muted-foreground">
-          This project is intended to showcase some remarkables moments in my
-          life (trips, family, etc).
+          Here you can find all important moments in my life
           </p>
         </div>
         {moments.length === 0 && (
