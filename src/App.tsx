@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./Navbar";
 import Home from "./Home";
 import Favorites from "./Favorites";
+import New from "./New";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <main className="container mx-auto">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/new" element={<New />} />
             <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </main>
