@@ -22,7 +22,7 @@ const Navbar = () => {
   ];
   return (
     <nav className="w-full mb-4 bg-gray-800">
-      <div className="container flex py-1">
+      <div className="container mx-auto flex py-1">
         <h2 className="text-xl font-medium flex items-center pr-3">
           <Link className="text-gray-300 hover:text-white" to="/">
             Moments

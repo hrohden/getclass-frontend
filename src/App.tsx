@@ -10,7 +10,7 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar />
-        <main className="container mx-auto">
+        <main className="container mx-auto flex flex-col gap-4">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/new" element={<New />} />

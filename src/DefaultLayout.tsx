@@ -9,13 +9,11 @@ type Props = {
 const DefaultLayout = (props: Props) => {
   return (
     <>
-      <h1 className="text-6xl font-bold tracking-tight pb-4">{props.title}</h1>
+      <h1 className="text-6xl font-bold tracking-tight">{props.title}</h1>
       {props.description && (
-        <div className="space-y-0.5">
-          <p className="text-muted-foreground">
-            {props.description}
-          </p>
-        </div>
+        <p className="text-slate-400 text-2xl font-semibold tracking-tight">
+          {props.description}
+        </p>
       )}
       <article className="bg-white p-4 border border-slate-300 rounded-xl">
         {props.children}
