@@ -32,18 +32,18 @@ const Home = () => {
         <p>Currently, there are no moments to display</p>
       )}
 
-      <table>
+    <table className="table-auto border-collapse border border-gray-400 w-full">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Description</th>
+            <th className="px-4 py-2 bg-gray-200 text-gray-600 border border-gray-400">Title</th>
+            <th className="px-4 py-2 bg-gray-200 text-gray-600 border border-gray-400">Description</th>
           </tr>
         </thead>
         <tbody>
           {moments.map(moment => (
             <tr key={moment.id}>
-              <td>{moment.title}</td>
-              <td>{moment.description}</td>
+              <td className="px-4 py-2 border border-gray-400">{moment.title}</td>
+              <td className="px-4 py-2 border border-gray-400">{moment.description}</td>
             </tr>
           ))}
         </tbody>
