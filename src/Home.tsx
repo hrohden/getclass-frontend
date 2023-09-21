@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Moment } from "./Moment";
 import MomentCard from "./MomentCard";
+import DefaultLayout from "./DefaultLayout";
 
 const Home = () => {
   const [moments] = useState<Moment[]>([
@@ -23,20 +24,14 @@ const Home = () => {
   ]);
   
   return (
-    <>
-      <h1 className="text-6xl font-bold tracking-tight pb-4">All moments</h1>
-      <div className="space-y-0.5">
-        <p className="text-muted-foreground">
-          Here you can find all important moments in my life
-        </p>
-      </div>
+    <DefaultLayout title="All moments" description="Here you can find all important moments in my life">
       {moments.length === 0 && (
         <p>Currently, there are no moments to display</p>
       )}
       {moments.map((moment) => (
         <MomentCard moment={moment} key={moment.id}></MomentCard>
       ))}
-    </>
+    </DefaultLayout>
   );
 };
 export default Home;
