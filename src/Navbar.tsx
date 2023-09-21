@@ -37,7 +37,7 @@ const Navbar = () => {
                     isActive
                       ? 'flex items-center bg-gray-900 px-3 py-3 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                  } flex items-center px-3 py-3`
+                  } flex items-center px-3 py-3 rounded-md`
                 }
                 to={path}
               >

@@ -22,7 +22,7 @@ const DefaultLayout = (props: Props) => {
           {props.description}
         </p>
       )}
-      <article className='rounded-xl border border-slate-300 bg-white p-4'>
+      <article className='rounded-md border border-slate-300 bg-white p-4'>
         {props.children}
       </article>
     </>
