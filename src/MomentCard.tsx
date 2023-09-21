@@ -1,8 +1,8 @@
-import { Moment } from "./Moment";
+import { Moment } from './Moment'
 
 type Props = {
-  moment: Moment;
-};
+  moment: Moment
+}
 
 const MomentCard = (props: Props) => {
   return (
@@ -18,7 +18,7 @@ const MomentCard = (props: Props) => {
         <button>Favorite</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default MomentCard;
+export default MomentCard
