@@ -1,4 +1,5 @@
 import { ReactNode, useEffect } from 'react'
+import Footer from './Footer'
 
 type Props = {
   title: string
@@ -25,6 +26,7 @@ const DefaultLayout = (props: Props) => {
       <article className='rounded-md border border-slate-300 bg-white p-4'>
         {props.children}
       </article>
+      <Footer />
     </>
   )
 }
