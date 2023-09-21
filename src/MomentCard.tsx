@@ -1,13 +1,3 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-
 import { Moment } from "./Moment";
 
 type Props = {
@@ -16,18 +6,18 @@ type Props = {
 
 const MomentCard = (props: Props) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{props.moment.title}</CardTitle>
-        <CardDescription>{props.moment.headline}</CardDescription>
-      </CardHeader>
-      <CardContent>
+    <div>
+      <div>
+        <div>{props.moment.title}</div>
+        <div>{props.moment.headline}</div>
+      </div>
+      <div>
         <p>{props.moment.description}</p>
-      </CardContent>
-      <CardFooter>
-        <Button variant="outline">Favorite</Button>
-      </CardFooter>
-    </Card>
+      </div>
+      <div>
+        <button>Favorite</button>
+      </div>
+    </div>
   );
 };
 
