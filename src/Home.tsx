@@ -26,6 +26,7 @@ const Home = () => {
   return (
     <DefaultLayout
       title='All moments'
+      documentTitle='Moments'
       description='Here you can find all important moments in my life'
     >
       {moments.length === 0 && (

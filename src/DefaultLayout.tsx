@@ -1,12 +1,17 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 
 type Props = {
   title: string
+  documentTitle?: string
   description?: string
   children?: ReactNode
 }
 
 const DefaultLayout = (props: Props) => {
+  useEffect(() => {
+    document.title = props.documentTitle ? props.documentTitle : `${props.title} | Moments`
+  }, [props.documentTitle, props.title])
+
   return (
     <>
       <h1 className='text-6xl font-bold tracking-tight'>{props.title}</h1>
