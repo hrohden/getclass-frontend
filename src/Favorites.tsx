@@ -1,8 +1,9 @@
+import DefaultLayout from "./DefaultLayout"
+
 const Favorites = () => {
   return (
-    <>
-      <h1 className="text-6xl font-bold tracking-tight pb-4">Favorites</h1>
-    </>
+    <DefaultLayout title="Favorites" description="Keep track of the most favorites moments of my life">
+    </DefaultLayout>
   )
 }
 export default Favorites

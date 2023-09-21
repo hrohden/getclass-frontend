@@ -1,8 +1,9 @@
+import DefaultLayout from "./DefaultLayout";
+
 const New = () => {
   return (
-    <>
-      <h1 className="text-6xl font-bold tracking-tight pb-4">New moment</h1>
-    </>
+    <DefaultLayout title="New moment" description="Wanna create a new moment to never forget it anymore?">
+    </DefaultLayout>
   );
 };
 export default New;

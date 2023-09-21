@@ -13,7 +13,7 @@ const DefaultLayout = (props: Props) => {
       {props.description && (
         <div className="space-y-0.5">
           <p className="text-muted-foreground">
-            Here you can find all important moments in my life
+            {props.description}
           </p>
         </div>
       )}
