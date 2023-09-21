@@ -32,9 +32,23 @@ const Home = () => {
       {moments.length === 0 && (
         <p>Currently, there are no moments to display</p>
       )}
-      {moments.map(moment => (
-        <MomentCard moment={moment} key={moment.id}></MomentCard>
-      ))}
+
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {moments.map(moment => (
+            <tr key={moment.id}>
+              <td>{moment.title}</td>
+              <td>{moment.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </DefaultLayout>
   )
 }

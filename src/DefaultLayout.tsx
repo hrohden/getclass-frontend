@@ -9,7 +9,9 @@ type Props = {
 
 const DefaultLayout = (props: Props) => {
   useEffect(() => {
-    document.title = props.documentTitle ? props.documentTitle : `${props.title} | Moments`
+    document.title = props.documentTitle
+      ? props.documentTitle
+      : `${props.title} | Moments`
   }, [props.documentTitle, props.title])
 
   return (
