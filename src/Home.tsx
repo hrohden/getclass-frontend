@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import { Moment } from './Moment'
-import MomentCard from './MomentCard'
 import DefaultLayout from './DefaultLayout'
+import { Moment } from './Moment'
 
 const Home = () => {
   const [moments] = useState<Moment[]>([
