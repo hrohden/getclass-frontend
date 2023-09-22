@@ -1,26 +1,9 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import DefaultLayout from './DefaultLayout'
-import { Moment } from './Moment'
+import MomentsContext from './momentsContext'
 
 const Home = () => {
-  const [moments] = useState<Moment[]>([
-    {
-      id: '1',
-      title: 'Trip to NYC',
-      headline: 'My trip to NY with my wife',
-      description:
-        'It was an amazing trip! Many places to take pictures and visit!',
-      isFavorite: false,
-    },
-    {
-      id: '2',
-      title: 'Trip to Europe',
-      headline: 'My trip to Europe with my wife in 2014',
-      description:
-        'This trip was when we were waiting for Lucas. Many pictures and great moments.',
-      isFavorite: false,
-    },
-  ])
+  const moments = useContext(MomentsContext)
 
   return (
     <DefaultLayout
@@ -32,18 +15,26 @@ const Home = () => {
         <p>Currently, there are no moments to display</p>
       )}
 
-    <table className="table-auto border-collapse border border-gray-400 w-full">
+      <table className='w-full table-auto border-collapse border border-gray-400'>
         <thead>
           <tr>
-            <th className="px-4 py-2 bg-gray-200 text-gray-600 border border-gray-400">Title</th>
-            <th className="px-4 py-2 bg-gray-200 text-gray-600 border border-gray-400">Description</th>
+            <th className='border border-gray-400 bg-gray-200 px-4 py-2 text-gray-600'>
+              Title
+            </th>
+            <th className='border border-gray-400 bg-gray-200 px-4 py-2 text-gray-600'>
+              Description
+            </th>
           </tr>
         </thead>
         <tbody>
           {moments.map(moment => (
             <tr key={moment.id}>
-              <td className="px-4 py-2 border border-gray-400">{moment.title}</td>
-              <td className="px-4 py-2 border border-gray-400">{moment.description}</td>
+              <td className='border border-gray-400 px-4 py-2'>
+                {moment.title}
+              </td>
+              <td className='border border-gray-400 px-4 py-2'>
+                {moment.description}
+              </td>
             </tr>
           ))}
         </tbody>
