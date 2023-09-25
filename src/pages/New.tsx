@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import DefaultLayout from '../layouts/DefaultLayout'
+import { Moment } from '../types/Moment'
 
 const defaultValues = {
   title: 'My new moment',
@@ -8,13 +9,13 @@ const defaultValues = {
 }
 
 const New = () => {
-  const { register, getValues } = useForm({
+  const { register, getValues, handleSubmit } = useForm({
     defaultValues,
   })
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log(getValues())
+  const submitForm = () => {
+    const values: Moment = { id: '4', isFavorite: false, ...getValues() }
+    console.log(values)
   }
 
   return (
@@ -22,7 +23,10 @@ const New = () => {
       title='New moment'
       description='Wanna create a new moment to never forget it anymore?'
     >
-      <form onSubmit={handleFormSubmit} className='flex w-full flex-col gap-4'>
+      <form
+        onSubmit={handleSubmit(submitForm)}
+        className='flex w-full flex-col gap-4'
+      >
         <div>
           <label htmlFor='title' className='mb-2 block font-bold text-gray-700'>
             Title
@@ -67,7 +71,7 @@ const New = () => {
             type='submit'
             className='focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none'
           >
-            <i className="fa-fw fa-solid fa-plus mr-2"></i>Submit
+            <i className='fa-fw fa-solid fa-plus mr-2'></i>Submit
           </button>
         </div>
       </form>
