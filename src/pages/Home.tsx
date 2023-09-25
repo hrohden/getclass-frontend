@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import DefaultLayout from './DefaultLayout'
-import MomentsContext from './momentsContext'
+import DefaultLayout from '../layouts/DefaultLayout'
+import MomentsContext from '../store/momentsContext'
 
 const Home = () => {
   const moments = useContext(MomentsContext)

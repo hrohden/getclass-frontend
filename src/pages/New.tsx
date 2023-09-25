@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import DefaultLayout from './DefaultLayout'
+import DefaultLayout from '../layouts/DefaultLayout'
 
 const defaultValues = {
   title: 'My new moment',

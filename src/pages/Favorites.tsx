@@ -1,4 +1,4 @@
-import DefaultLayout from './DefaultLayout'
+import DefaultLayout from '../layouts/DefaultLayout'
 
 const Favorites = () => {
   return (

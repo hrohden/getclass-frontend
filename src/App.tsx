@@ -1,11 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import Favorites from './Favorites'
-import Home from './Home'
-import { Moment } from './Moment'
-import Navbar from './Navbar'
-import New from './New'
-import MomentsContext from './momentsContext'
+import Navbar from './components/Navbar'
+import Favorites from './pages/Favorites'
+import Home from './pages/Home'
+import New from './pages/New'
+import MomentsContext from './store/momentsContext'
+import { Moment } from './types/Moment'
 
 const moments: Moment[] = [
   {

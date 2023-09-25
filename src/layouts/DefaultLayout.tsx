@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from 'react'
-import Footer from './Footer'
+import Footer from '../components/Footer'
 
 type Props = {
   title: string

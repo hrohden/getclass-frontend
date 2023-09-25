@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { Moment } from './Moment'
+import { Moment } from '../types/Moment'
 
 const MomentsContext = createContext<Moment[]>([])
 
