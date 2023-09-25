@@ -3,7 +3,7 @@ import DefaultLayout from '../layouts/DefaultLayout'
 import MomentsContext from '../store/momentsContext'
 
 const Home = () => {
-  const moments = useContext(MomentsContext)
+  const { moments } = useContext(MomentsContext)
 
   return (
     <DefaultLayout
