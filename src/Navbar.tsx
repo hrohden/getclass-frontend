@@ -4,6 +4,7 @@ type NavbarLink = {
   id: string
   path: string
   text: string
+  icon: string
 }
 
 const Navbar = () => {
@@ -12,16 +13,19 @@ const Navbar = () => {
       id: '1',
       path: '/',
       text: 'All moments',
+      icon: 'list'
     },
     {
       id: '2',
       path: '/new',
       text: 'New moment',
+      icon: 'plus'
     },
     {
       id: '3',
       path: '/favorites',
       text: 'Favorites',
+      icon: 'heart'
     },
   ]
   return (
@@ -34,7 +38,7 @@ const Navbar = () => {
           </Link>
         </h2>
         <ul className='flex'>
-          {links.map(({ id, path, text }) => (
+          {links.map(({ id, path, text, icon }) => (
             <li className='flex items-stretch text-sm font-medium' key={id}>
               <NavLink
                 className={({ isActive }) =>
@@ -46,7 +50,7 @@ const Navbar = () => {
                 }
                 to={path}
               >
-                {text}
+                <i className={`fa-fw fa-solid fa-${icon} mr-2 text-gray-500`}></i>{text}
               </NavLink>
             </li>
           ))}

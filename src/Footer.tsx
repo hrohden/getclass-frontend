@@ -13,10 +13,10 @@ const Footer = () => {
           </div>
           <div className="w-full lg:w-1/3 mb-4 lg:mb-0">
             <h2 className="text-lg font-bold text-gray-500 mb-2">Follow Us</h2>
-            <div className="flex">
-              <a href="#" className="text-gray-400 hover:text-gray-400 mr-4"><i className="fab fa-facebook fa-lg"></i></a>
-              <a href="#" className="text-gray-400 hover:text-gray-400 mr-4"><i className="fab fa-twitter fa-lg"></i></a>
-              <a href="#" className="text-gray-400 hover:text-gray-400 mr-4"><i className="fab fa-instagram fa-lg"></i></a>
+            <div className="flex gap-4">
+              <a href="#" className="text-gray-400 hover:text-gray-400 text-6xl"><i className="fa-fw fa-brands fa-square-facebook"></i></a>
+              <a href="#" className="text-gray-400 hover:text-gray-400 text-6xl"><i className="fa-fw fa-brands fa-square-twitter"></i></a>
+              <a href="#" className="text-gray-400 hover:text-gray-400 text-6xl"><i className="fa-fw fa-brands fa-square-instagram"></i></a>
             </div>
           </div>
         </div>
