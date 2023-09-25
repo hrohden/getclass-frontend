@@ -13,25 +13,25 @@ const Navbar = () => {
       id: '1',
       path: '/',
       text: 'All moments',
-      icon: 'list'
+      icon: 'list',
     },
     {
       id: '2',
       path: '/new',
       text: 'New moment',
-      icon: 'plus'
+      icon: 'plus',
     },
     {
       id: '3',
       path: '/favorites',
       text: 'Favorites',
-      icon: 'heart'
+      icon: 'heart',
     },
   ]
   return (
     <nav className='mb-4 w-full bg-gray-800'>
       <div className='container mx-auto flex items-center gap-4 py-1'>
-        <img src="../public/moment.png" alt="" className='h-7' />
+        <img src='../public/moment.png' alt='' className='h-7' />
         <h2 className='flex items-center text-xl font-medium'>
           <Link className='text-gray-300 hover:text-white' to='/'>
             Moments
@@ -46,11 +46,14 @@ const Navbar = () => {
                     isActive
                       ? 'flex items-center bg-gray-900 px-3 py-3 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                  } flex items-center px-3 py-3 rounded-md`
+                  } flex items-center rounded-md px-3 py-3`
                 }
                 to={path}
               >
-                <i className={`fa-fw fa-solid fa-${icon} mr-2 text-gray-500`}></i>{text}
+                <i
+                  className={`fa-fw fa-solid fa-${icon} mr-2 text-gray-500`}
+                ></i>
+                {text}
               </NavLink>
             </li>
           ))}

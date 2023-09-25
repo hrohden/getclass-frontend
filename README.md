@@ -3,6 +3,7 @@
 Moments is a web application that helps you keep track of important moments in your life. You can add, edit, and delete moments, and view them in a list or on a calendar.
 
 ## Installation
+
 To install Moments, you'll need to have Node.js and npm installed on your computer. Then, follow these steps:
 
 1. Clone this repository to your local machine.
@@ -23,9 +24,9 @@ This will start the Vite development server and open the application in your def
 
 Moments is built with the following technologies:
 
-* [Vite](https://vitejs.dev/) - A build tool that provides fast and reliable development experience.
-* [React](https://react.dev/) - A JavaScript library for building user interfaces.
-* [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
+- [Vite](https://vitejs.dev/) - A build tool that provides fast and reliable development experience.
+- [React](https://react.dev/) - A JavaScript library for building user interfaces.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
 
 ## Contributing
 
