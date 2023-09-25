@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import DefaultLayout from '../layouts/DefaultLayout'
+import MomentsContext from '../store/momentsContext'
 import { Moment } from '../types/Moment'
 
 const defaultValues = {
@@ -9,13 +11,14 @@ const defaultValues = {
 }
 
 const New = () => {
+  const momentsContext = useContext(MomentsContext)
   const { register, getValues, handleSubmit } = useForm({
     defaultValues,
   })
 
   const submitForm = () => {
     const values: Moment = { id: '4', isFavorite: false, ...getValues() }
-    console.log(values)
+    momentsContext.addMoment(values)
   }
 
   return (
