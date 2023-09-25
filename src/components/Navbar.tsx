@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <nav className='mb-4 w-full bg-gray-800'>
       <div className='container mx-auto flex items-center gap-4 py-1'>
-        <img src='../public/moment.png' alt='' className='h-7' />
+        <img src='/moment.png' alt='' className='h-7' />
         <h2 className='flex items-center text-xl font-medium'>
           <Link className='text-gray-300 hover:text-white' to='/'>
             Moments
