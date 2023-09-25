@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 
 type NavbarLink = {
+  id: string
   path: string
   text: string
 }
@@ -8,14 +9,17 @@ type NavbarLink = {
 const Navbar = () => {
   const links: NavbarLink[] = [
     {
+      id: '1',
       path: '/',
       text: 'All moments',
     },
     {
+      id: '2',
       path: '/new',
       text: 'New moment',
     },
     {
+      id: '3',
       path: '/favorites',
       text: 'Favorites',
     },
@@ -30,8 +34,8 @@ const Navbar = () => {
           </Link>
         </h2>
         <ul className='flex'>
-          {links.map(({ path, text }) => (
-            <li className='flex items-stretch text-sm font-medium'>
+          {links.map(({ id, path, text }) => (
+            <li className='flex items-stretch text-sm font-medium' key={id}>
               <NavLink
                 className={({ isActive }) =>
                   `${
