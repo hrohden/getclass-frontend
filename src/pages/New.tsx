@@ -6,14 +6,19 @@ import MomentsContext from '../store/momentsContext'
 import { Moment } from '../types/Moment'
 
 const defaultValues = {
-  title: 'My new moment',
-  headline: 'This is my new moment',
-  description: 'Look at this moment! It is so cool!',
+  title: '',
+  headline: '',
+  description: '',
 }
 
 const New = () => {
   const momentsContext = useContext(MomentsContext)
-  const { register, getValues, handleSubmit } = useForm({
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues,
   })
 
@@ -31,22 +36,31 @@ const New = () => {
         onSubmit={handleSubmit(submitForm)}
         className='flex w-full flex-col gap-4'
       >
-        <div>
-          <label htmlFor='title' className='mb-2 block font-bold text-gray-700'>
+        <div className='flex flex-col gap-2'>
+          <label
+            htmlFor='title'
+            className={`block font-bold ${
+              errors.title ? 'text-red-600' : 'text-gray-700'
+            }`}
+          >
             Title
           </label>
           <input
             type='text'
             id='title'
-            className='focus:shadow-outline w-full appearance-none rounded border px-3 py-3 text-gray-700 shadow focus:outline-none'
-            {...register('title')}
+            className={`focus:shadow-outline w-full appearance-none rounded border px-3 py-3 text-gray-700 shadow focus:outline-none ${
+              errors.title
+                ? 'border-red-600 shadow-red-300'
+                : 'border-gray-200 shadow-gray-300'
+            }`}
+            {...register('title', { required: true })}
           />
+          {errors.title && (
+            <p className='text-red-600'>This field is required.</p>
+          )}
         </div>
-        <div>
-          <label
-            htmlFor='headline'
-            className='mb-2 block font-bold text-gray-700'
-          >
+        <div className='flex flex-col gap-2'>
+          <label htmlFor='headline' className='block font-bold text-gray-700'>
             Headline
           </label>
           <input
@@ -56,19 +70,28 @@ const New = () => {
             {...register('headline', { required: false })}
           />
         </div>
-        <div>
+        <div className='flex flex-col gap-2'>
           <label
             htmlFor='description'
-            className='mb-2 block font-bold text-gray-700'
+            className={`block font-bold ${
+              errors.description ? 'text-red-600' : 'text-gray-700'
+            }`}
           >
             Description
           </label>
           <textarea
             id='description'
-            className='focus:shadow-outline w-full appearance-none rounded border px-3 py-3 text-gray-700 shadow focus:outline-none'
+            className={`focus:shadow-outline w-full appearance-none rounded border px-3 py-3 text-gray-700 shadow focus:outline-none ${
+              errors.description
+                ? 'border-red-600 shadow-red-300'
+                : 'border-gray-200 shadow-gray-300'
+            }`}
             rows={4}
-            {...register('description')}
+            {...register('description', { required: true })}
           ></textarea>
+          {errors.description && (
+            <p className='text-red-600'>This field is required.</p>
+          )}
         </div>
         <div className='flex items-center justify-between'>
           <button
