@@ -1,8 +1,16 @@
 import { useForm } from 'react-hook-form'
 import DefaultLayout from './DefaultLayout'
 
+const defaultValues = {
+  title: 'My new moment',
+  headline: 'This is my new moment',
+  description: 'Look at this moment! It is so cool!',
+}
+
 const New = () => {
-  const { register, getValues } = useForm()
+  const { register, getValues } = useForm({
+    defaultValues,
+  })
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -14,7 +22,7 @@ const New = () => {
       title='New moment'
       description='Wanna create a new moment to never forget it anymore?'
     >
-      <form onSubmit={handleFormSubmit} className='w-full flex flex-col gap-4'>
+      <form onSubmit={handleFormSubmit} className='flex w-full flex-col gap-4'>
         <div>
           <label htmlFor='title' className='mb-2 block font-bold text-gray-700'>
             Title
@@ -35,10 +43,9 @@ const New = () => {
           </label>
           <input
             type='text'
-            name='headline'
             id='headline'
             className='focus:shadow-outline w-full appearance-none rounded border px-3 py-3 text-gray-700 shadow focus:outline-none'
-            {...(register('headline'), { required: false })}
+            {...register('headline', { required: false })}
           />
         </div>
         <div>
