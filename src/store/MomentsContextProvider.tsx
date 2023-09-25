@@ -1,8 +1,9 @@
 import { ReactNode, useState } from 'react'
+import { Moment } from '../types/Moment'
 import MomentsContext from './momentsContext'
 
 const MomentsContextProvider = ({ children }: { children: ReactNode }) => {
-  const [moments] = useState([
+  const [moments, setMoments] = useState<Moment[]>([
     {
       id: '1',
       title: 'Trip to NYC',
@@ -21,8 +22,18 @@ const MomentsContextProvider = ({ children }: { children: ReactNode }) => {
     },
   ])
 
+  const addMoment = (moment: Moment) => {
+    setMoments(prevMoments => prevMoments.concat(moment))
+  }
+
+  const deleteMoment = (moment: Moment) => {
+    setMoments(prevMoments => prevMoments.filter(m => m.id !== moment.id))
+  }
+
   const context = {
-    moments: moments,
+    moments,
+    addMoment,
+    deleteMoment,
   }
 
   return (
