@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
+import { v4 as uuidv4 } from 'uuid'
 import DefaultLayout from '../layouts/DefaultLayout'
 import MomentsContext from '../store/momentsContext'
 import { Moment } from '../types/Moment'
@@ -17,7 +18,7 @@ const New = () => {
   })
 
   const submitForm = () => {
-    const values: Moment = { id: '4', isFavorite: false, ...getValues() }
+    const values: Moment = { id: uuidv4(), isFavorite: false, ...getValues() }
     momentsContext.addMoment(values)
   }
 
