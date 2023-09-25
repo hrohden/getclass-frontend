@@ -3,7 +3,7 @@ import DefaultLayout from '../layouts/DefaultLayout'
 import MomentsContext from '../store/momentsContext'
 
 const Home = () => {
-  const { moments } = useContext(MomentsContext)
+  const { moments, deleteMoment } = useContext(MomentsContext)
 
   return (
     <DefaultLayout
@@ -24,6 +24,9 @@ const Home = () => {
             <th className='border border-gray-400 bg-gray-200 px-4 py-2 text-gray-600'>
               Description
             </th>
+            <th className='border border-gray-400 bg-gray-200 px-4 py-2 text-gray-600'>
+              Actions
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -34,6 +37,15 @@ const Home = () => {
               </td>
               <td className='border border-gray-400 px-4 py-2'>
                 {moment.description}
+              </td>
+              <td className='border border-gray-400 px-4 py-2'>
+                <button
+                  onClick={() => {
+                    deleteMoment(moment)
+                  }}
+                >
+                  <i className='fa-fw fa-solid fa-trash'></i> Remove
+                </button>
               </td>
             </tr>
           ))}
