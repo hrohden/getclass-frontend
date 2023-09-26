@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import DefaultLayout from '../layouts/DefaultLayout'
 import MomentsContext from '../store/momentsContext'
 
@@ -39,6 +40,9 @@ const Home = () => {
                 {moment.description}
               </td>
               <td className='border border-gray-400 px-4 py-2'>
+                <Link to={`/edit/${moment.id}`}>
+                  <i className='fa-fw fa-solid fa-trash'></i> Edit
+                </Link>
                 <button
                   onClick={() => {
                     deleteMoment(moment)
