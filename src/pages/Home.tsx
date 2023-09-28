@@ -1,10 +1,21 @@
 import { useContext } from 'react'
+import { useQuery } from 'react-query'
 import { Link } from 'react-router-dom'
 import DefaultLayout from '../layouts/DefaultLayout'
 import MomentsContext from '../store/momentsContext'
 
 const Home = () => {
   const { moments, deleteMoment } = useContext(MomentsContext)
+  const { isLoading, error, data } = useQuery({
+    queryFn: async () => {
+      const res = await fetch('/api/moments')
+      return await res.json()
+    },
+  })
+
+  if (isLoading) return <p>Loading...</p>
+
+  if (error) return <p>An error has occurred.</p>
 
   return (
     <DefaultLayout
