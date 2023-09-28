@@ -21,20 +21,21 @@ const Navbar = () => {
           </Link>
         </h2>
         <ul className='flex'>
-          <NavbarItem
-            item={{ id: '1', path: '/', text: allMomentsText, icon: 'list' }}
-          />
-          <NavbarItem
-            item={{ id: '2', path: '/new', text: 'New moment', icon: 'plus' }}
-          />
+          <NavbarItem item={{ id: '1', path: '/', icon: 'list' }}>
+            {allMomentsText}
+          </NavbarItem>
+          <NavbarItem item={{ id: '2', path: '/new', icon: 'plus' }}>
+            New moment
+          </NavbarItem>
           <NavbarItem
             item={{
               id: '3',
               path: '/favorites',
-              text: 'Favorites',
               icon: 'heart',
             }}
-          />
+          >
+            Favorites
+          </NavbarItem>
         </ul>
       </div>
     </nav>

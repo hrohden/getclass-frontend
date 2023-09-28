@@ -2,9 +2,11 @@ import { NavLink } from 'react-router-dom'
 import { NavbarMenuItem } from '../types/NavbarMenuItem'
 
 const NavbarItem = ({
-  item: { id, path, icon, text },
+  item: { id, path, icon },
+  children,
 }: {
   item: NavbarMenuItem
+  children: React.ReactNode
 }) => {
   return (
     <li className='flex items-stretch text-sm font-medium' key={id}>
@@ -19,7 +21,7 @@ const NavbarItem = ({
         to={path}
       >
         <i className={`fa-fw fa-solid fa-${icon} mr-2 text-gray-500`}></i>
-        {text}
+        {children}
       </NavLink>
     </li>
   )
