@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Layout from './layouts/Layout'
 import Edit from './pages/Edit'
 import Favorites from './pages/Favorites'
 import Home from './pages/Home'
@@ -9,20 +9,34 @@ import MomentsContextProvider from './store/MomentsContextProvider'
 
 function App() {
   const queryClient = new QueryClient()
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: '/new',
+          element: <New />,
+        },
+        {
+          path: '/favorites',
+          element: <Favorites />,
+        },
+        {
+          path: '/edit/:id',
+          element: <Edit />,
+        },
+      ],
+    },
+  ])
   return (
     <QueryClientProvider client={queryClient}>
       <MomentsContextProvider>
-        <BrowserRouter>
-          <Navbar />
-          <main className='container mx-auto flex flex-col gap-4'>
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/new' element={<New />} />
-              <Route path='/favorites' element={<Favorites />} />
-              <Route path='/edit/:id' element={<Edit />} />
-            </Routes>
-          </main>
-        </BrowserRouter>
+        <RouterProvider router={router} />
       </MomentsContextProvider>
     </QueryClientProvider>
   )
