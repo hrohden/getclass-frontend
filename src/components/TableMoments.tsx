@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import MomentsContext from '../store/momentsContext'
 import { Moment } from '../types/Moment'
 
-const TableMoments = ({ moments }: { moments: Moment[] }) => {
+const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
   const { deleteMoment } = useContext(MomentsContext)
   return (
     <table className='w-full table-auto border-collapse border border-gray-400'>
@@ -21,7 +21,7 @@ const TableMoments = ({ moments }: { moments: Moment[] }) => {
         </tr>
       </thead>
       <tbody>
-        {moments.map(moment => (
+        {moments?.map(moment => (
           <tr key={moment.id}>
             <td className='border border-gray-400 px-4 py-2'>{moment.title}</td>
             <td className='border border-gray-400 px-4 py-2'>

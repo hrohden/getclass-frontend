@@ -8,7 +8,15 @@ import New from './pages/New'
 import MomentsContextProvider from './store/MomentsContextProvider'
 
 function App() {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
+        retry: 1,
+      },
+    },
+  })
   const router = createBrowserRouter([
     {
       path: '/',
