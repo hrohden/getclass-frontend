@@ -1,14 +1,9 @@
-import { Link, NavLink } from 'react-router-dom'
-
-type NavbarLink = {
-  id: string
-  path: string
-  text: string
-  icon: string
-}
+import { Link } from 'react-router-dom'
+import { NavbarMenuItem } from '../types/NavbarMenuItem'
+import NavbarItem from './NavbarItem'
 
 const Navbar = () => {
-  const links: NavbarLink[] = [
+  const links: NavbarMenuItem[] = [
     {
       id: '1',
       path: '/',
@@ -38,24 +33,8 @@ const Navbar = () => {
           </Link>
         </h2>
         <ul className='flex'>
-          {links.map(({ id, path, text, icon }) => (
-            <li className='flex items-stretch text-sm font-medium' key={id}>
-              <NavLink
-                className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? 'flex items-center bg-gray-900 px-3 py-3 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                  } flex items-center rounded-md px-3 py-3`
-                }
-                to={path}
-              >
-                <i
-                  className={`fa-fw fa-solid fa-${icon} mr-2 text-gray-500`}
-                ></i>
-                {text}
-              </NavLink>
-            </li>
+          {links.map(item => (
+            <NavbarItem item={item} />
           ))}
         </ul>
       </div>
