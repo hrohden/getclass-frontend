@@ -1,21 +1,10 @@
 import { useContext } from 'react'
-import { useQuery } from 'react-query'
 import TableMoments from '../components/TableMoments'
 import DefaultLayout from '../layouts/DefaultLayout'
 import MomentsContext from '../store/momentsContext'
 
 const Home = () => {
   const { moments } = useContext(MomentsContext)
-  const { isLoading, error, data } = useQuery({
-    queryFn: async () => {
-      const res = await fetch('/api/moments')
-      return await res.json()
-    },
-  })
-
-  if (isLoading) return <p>Loading...</p>
-
-  if (error) return <p>An error has occurred.</p>
 
   return (
     <DefaultLayout
