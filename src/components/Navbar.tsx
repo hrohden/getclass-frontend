@@ -1,28 +1,7 @@
 import { Link } from 'react-router-dom'
-import { NavbarMenuItem } from '../types/NavbarMenuItem'
 import NavbarItem from './NavbarItem'
 
 const Navbar = () => {
-  const links: NavbarMenuItem[] = [
-    {
-      id: '1',
-      path: '/',
-      text: 'All moments',
-      icon: 'list',
-    },
-    {
-      id: '2',
-      path: '/new',
-      text: 'New moment',
-      icon: 'plus',
-    },
-    {
-      id: '3',
-      path: '/favorites',
-      text: 'Favorites',
-      icon: 'heart',
-    },
-  ]
   return (
     <nav className='mb-4 w-full bg-gray-800'>
       <div className='container mx-auto flex items-center gap-4 py-1'>
@@ -33,9 +12,20 @@ const Navbar = () => {
           </Link>
         </h2>
         <ul className='flex'>
-          {links.map(item => (
-            <NavbarItem item={item} />
-          ))}
+          <NavbarItem
+            item={{ id: '1', path: '/', text: 'All moments', icon: 'list' }}
+          />
+          <NavbarItem
+            item={{ id: '2', path: '/new', text: 'New moment', icon: 'plus' }}
+          />
+          <NavbarItem
+            item={{
+              id: '3',
+              path: '/favorites',
+              text: 'Favorites',
+              icon: 'heart',
+            }}
+          />
         </ul>
       </div>
     </nav>
