@@ -1,7 +1,16 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import MomentsContext from '../store/momentsContext'
 import NavbarItem from './NavbarItem'
 
 const Navbar = () => {
+  const context = useContext(MomentsContext)
+
+  const allMomentsText =
+    context.moments.length > 0
+      ? `All moments (${context.moments.length})`
+      : 'All moments'
+
   return (
     <nav className='mb-4 w-full bg-gray-800'>
       <div className='container mx-auto flex items-center gap-4 py-1'>
@@ -13,7 +22,7 @@ const Navbar = () => {
         </h2>
         <ul className='flex'>
           <NavbarItem
-            item={{ id: '1', path: '/', text: 'All moments', icon: 'list' }}
+            item={{ id: '1', path: '/', text: allMomentsText, icon: 'list' }}
           />
           <NavbarItem
             item={{ id: '2', path: '/new', text: 'New moment', icon: 'plus' }}
