@@ -3,7 +3,6 @@ import { useGetMoments } from '../hooks/useMoment'
 import DefaultLayout from '../layouts/DefaultLayout'
 
 const Home = () => {
-  // const { moments } = useContext(MomentsContext)
   const { data, isLoading, error } = useGetMoments()
 
   if (isLoading) return <p>Loading...</p>

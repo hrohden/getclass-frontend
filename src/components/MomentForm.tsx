@@ -3,7 +3,6 @@ import { useCreateMoment } from '../hooks/useMoment'
 import { Moment } from '../types/Moment'
 
 const MomentForm = ({ moment }: { moment: Moment }) => {
-  // const momentsContext = useContext(MomentsContext)
   const createMoment = useCreateMoment()
   const {
     register,
