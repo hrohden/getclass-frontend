@@ -23,4 +23,15 @@ const postMoment = async (moment: Moment): Promise<Moment> => {
   return response.json()
 }
 
-export { getMoments, postMoment }
+// delete moment from backend server
+const deleteMoment = async (id: string): Promise<string> => {
+  const method = 'DELETE'
+  await fetch(`${URL_BASE}/moments/${id}`, {
+    method,
+    headers,
+  })
+  return id
+}
+
+export { deleteMoment, getMoments, postMoment }
+

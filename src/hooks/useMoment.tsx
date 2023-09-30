@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { getMoments, postMoment } from '../api/moment'
+import { deleteMoment, getMoments, postMoment } from '../api/moment'
 import { Moment } from '../types/Moment'
 
 const key = 'moments'
@@ -20,4 +20,18 @@ const useCreateMoment = () => {
   })
 }
 
-export { useCreateMoment, useGetMoments }
+// hook to delete a moment
+const useDeleteMoment = () => {
+  const queryClient = useQueryClient()
+  return useMutation(deleteMoment, {
+    onSuccess: (id: string) => {
+      queryClient.setQueryData([key], (old: Moment[] | undefined) => {
+        return old ? old.filter(m => m.id !== id) : []
+      })
+      queryClient.invalidateQueries([key])
+    },
+  })
+}
+
+export { useCreateMoment, useDeleteMoment, useGetMoments }
+

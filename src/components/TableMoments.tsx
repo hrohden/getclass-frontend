@@ -1,10 +1,9 @@
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import MomentsContext from '../store/momentsContext'
+import { useDeleteMoment } from '../hooks/useMoment'
 import { Moment } from '../types/Moment'
 
 const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
-  const { deleteMoment } = useContext(MomentsContext)
+  const deleteMoment = useDeleteMoment()
   return (
     <table className='w-full table-auto border-collapse border border-gray-400'>
       <thead>
@@ -32,8 +31,8 @@ const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
                 <i className='fa-fw fa-solid fa-trash'></i> Edit
               </Link>
               <button
-                onClick={() => {
-                  deleteMoment(moment)
+                onClick={async () => {
+                  await deleteMoment.mutateAsync(moment.id!)
                 }}
               >
                 <i className='fa-fw fa-solid fa-trash'></i> Remove
