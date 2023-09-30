@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid'
 import MomentForm from '../components/MomentForm'
 import DefaultLayout from '../layouts/DefaultLayout'
 
@@ -8,7 +7,6 @@ const New = () => {
     headline: '',
     description: '',
     isFavorite: false,
-    id: uuidv4(),
   }
 
   return (

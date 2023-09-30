@@ -1,5 +1,5 @@
 export type Moment = {
-  id: string | number
+  id?: string | number
   title: string
   headline?: string
   description: string

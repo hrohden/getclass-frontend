@@ -1,12 +1,10 @@
 import { ReactNode, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { Moment } from '../types/Moment'
 import MomentsContext from './momentsContext'
 
 const MomentsContextProvider = ({ children }: { children: ReactNode }) => {
   const [moments, setMoments] = useState<Moment[]>([
     {
-      id: uuidv4(),
       title: 'Trip to NYC',
       headline: 'My trip to NY with my wife',
       description:
@@ -14,7 +12,6 @@ const MomentsContextProvider = ({ children }: { children: ReactNode }) => {
       isFavorite: false,
     },
     {
-      id: uuidv4(),
       title: 'Trip to Europe',
       headline: 'My trip to Europe with my wife in 2014',
       description:
