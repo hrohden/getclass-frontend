@@ -15,6 +15,7 @@ const useCreateMoment = () => {
       queryClient.setQueryData([key], (old: Moment[] | undefined) => {
         return old ? [...old, moment] : [moment]
       })
+      queryClient.invalidateQueries([key])
     },
   })
 }
