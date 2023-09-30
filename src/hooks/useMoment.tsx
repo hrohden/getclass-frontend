@@ -1,10 +1,22 @@
-import { useQuery } from 'react-query'
-import { getMoments } from '../api/moment'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
+import { getMoments, postMoment } from '../api/moment'
+import { Moment } from '../types/Moment'
 
 const key = 'moments'
 
 const useGetMoments = () => {
-  return useQuery(key, getMoments)
+  return useQuery([key], getMoments)
 }
 
-export default useGetMoments
+const useCreateMoment = () => {
+  const queryClient = useQueryClient()
+  return useMutation(postMoment, {
+    onSuccess: (moment: Moment) => {
+      queryClient.setQueryData([key], (old: Moment[] | undefined) => {
+        return old ? [...old, moment] : [moment]
+      })
+    },
+  })
+}
+
+export { useCreateMoment, useGetMoments }

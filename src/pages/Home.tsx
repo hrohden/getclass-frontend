@@ -1,5 +1,5 @@
 import TableMoments from '../components/TableMoments'
-import useGetMoments from '../hooks/useMoment'
+import { useGetMoments } from '../hooks/useMoment'
 import DefaultLayout from '../layouts/DefaultLayout'
 
 const Home = () => {

@@ -1,10 +1,10 @@
-import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import MomentsContext from '../store/momentsContext'
+import { useCreateMoment } from '../hooks/useMoment'
 import { Moment } from '../types/Moment'
 
 const MomentForm = ({ moment }: { moment: Moment }) => {
-  const momentsContext = useContext(MomentsContext)
+  // const momentsContext = useContext(MomentsContext)
+  const createMoment = useCreateMoment()
   const {
     register,
     getValues,
@@ -14,8 +14,8 @@ const MomentForm = ({ moment }: { moment: Moment }) => {
     defaultValues: moment,
   })
 
-  const submitForm = () => {
-    momentsContext.addMoment(getValues())
+  const submitForm = async () => {
+    await createMoment.mutateAsync(getValues())
   }
 
   return (
