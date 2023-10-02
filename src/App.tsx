@@ -5,7 +5,6 @@ import Edit from './pages/Edit'
 import Favorites from './pages/Favorites'
 import Home from './pages/Home'
 import New from './pages/New'
-import MomentsContextProvider from './store/MomentsContextProvider'
 
 function App() {
   const queryClient = new QueryClient({
@@ -43,9 +42,7 @@ function App() {
   ])
   return (
     <QueryClientProvider client={queryClient}>
-      <MomentsContextProvider>
-        <RouterProvider router={router} />
-      </MomentsContextProvider>
+      <RouterProvider router={router} />
     </QueryClientProvider>
   )
 }
