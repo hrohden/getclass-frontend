@@ -1,21 +1,20 @@
 import { useForm } from 'react-hook-form'
-import { useCreateMoment } from '../hooks/useMoment'
 import { Moment } from '../types/Moment'
 
-const MomentForm = ({ moment }: { moment: Moment }) => {
-  const createMoment = useCreateMoment()
+const MomentForm = ({
+  moment,
+  submitForm,
+}: {
+  moment: Moment
+  submitForm: any
+}) => {
   const {
     register,
-    getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: moment,
   })
-
-  const submitForm = async () => {
-    await createMoment.mutateAsync(getValues())
-  }
 
   return (
     <form
