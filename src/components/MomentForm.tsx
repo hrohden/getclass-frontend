@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { Moment } from '../types/Moment'
 
 const MomentForm = ({
@@ -6,7 +6,7 @@ const MomentForm = ({
   submitForm,
 }: {
   moment: Moment
-  submitForm: any
+  submitForm: SubmitHandler<Moment>
 }) => {
   const {
     register,
