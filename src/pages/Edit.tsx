@@ -1,9 +1,11 @@
 import { useParams } from 'react-router-dom'
 import MomentForm from '../components/MomentForm'
-import { useGetMoment } from '../hooks/useMoment'
+import { useGetMoment, useUpdateMoment } from '../hooks/useMoment'
 import DefaultLayout from '../layouts/DefaultLayout'
+import { Moment } from '../types/Moment'
 
 const Edit = () => {
+  const updateMoment = useUpdateMoment()
   const { id } = useParams()
   const { data, isLoading } = useGetMoment(id!)
 
@@ -16,7 +18,12 @@ const Edit = () => {
       title='New moment'
       description='Wanna create a new moment to never forget it anymore?'
     >
-      <MomentForm moment={data!}></MomentForm>
+      <MomentForm
+        moment={data!}
+        submitForm={async (moment: Moment) => {
+          updateMoment.mutateAsync(moment)
+        }}
+      ></MomentForm>
     </DefaultLayout>
   )
 }
