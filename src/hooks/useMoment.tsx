@@ -13,7 +13,7 @@ const useGetMoments = () => {
 }
 
 const useGetMoment = (id: string) => {
-  return useQuery(['moment', id], () => getMomentById(id))
+  return useQuery(['moment', { id }], () => getMomentById(id))
 }
 
 const useCreateMoment = () => {
@@ -33,10 +33,18 @@ const useUpdateMoment = () => {
   const queryClient = useQueryClient()
   return useMutation(putMoment, {
     onSuccess: (moment: Moment) => {
+      // update moment in cache
+      queryClient.setQueryData(['moment', { id: moment.id }], moment)
+      // replace moments with updated moment
       queryClient.setQueryData(['moments'], (old: Moment[] | undefined) => {
-        return old ? old.map(m => (m.id === moment.id ? moment : m)) : []
+        const newMoments = old
+          ? old.map(m => (m.id === moment.id ? moment : m))
+          : []
+        return newMoments
       })
-      queryClient.invalidateQueries(['moment', moment.id, 'moments'])
+      // invalidate cache for moment and moments
+      queryClient.invalidateQueries(['moment', { id: moment.id }])
+      queryClient.invalidateQueries(['moments'])
     },
   })
 }
