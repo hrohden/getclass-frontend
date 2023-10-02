@@ -1,15 +1,13 @@
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import MomentsContext from '../store/momentsContext'
+import { useGetMoments } from '../hooks/useMoment'
 import NavbarItem from './NavbarItem'
 
 const Navbar = () => {
-  const context = useContext(MomentsContext)
+  const { data, isLoading } = useGetMoments()
 
-  const allMomentsText =
-    context.moments.length > 0
-      ? `All moments (${context.moments.length})`
-      : 'All moments'
+  const allMomentsText = isLoading
+    ? 'All moments'
+    : `All moments (${data!.length})`
 
   return (
     <nav className='mb-4 w-full bg-gray-800'>
