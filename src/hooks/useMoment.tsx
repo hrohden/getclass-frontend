@@ -1,9 +1,18 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { deleteMoment, getMoments, postMoment } from '../api/moment'
+import {
+  deleteMoment,
+  getMomentById,
+  getMoments,
+  postMoment,
+} from '../api/moment'
 import { Moment } from '../types/Moment'
 
 const useGetMoments = () => {
   return useQuery(['moments'], getMoments)
+}
+
+const useGetMoment = (id: string) => {
+  return useQuery(['moment', id], () => getMomentById(id))
 }
 
 const useCreateMoment = () => {
@@ -31,5 +40,5 @@ const useDeleteMoment = () => {
   })
 }
 
-export { useCreateMoment, useDeleteMoment, useGetMoments }
+export { useCreateMoment, useDeleteMoment, useGetMoment, useGetMoments }
 

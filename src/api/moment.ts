@@ -6,8 +6,15 @@ const headers = {
   'Content-Type': 'application/json',
 }
 
+// get all moments
 const getMoments = async (): Promise<Moment[]> => {
   const response = await fetch(`${URL_BASE}/moments`)
+  return response.json()
+}
+
+// get moment by id
+const getMomentById = async (id: string): Promise<Moment> => {
+  const response = await fetch(`${URL_BASE}/moments/${id}`)
   return response.json()
 }
 
@@ -33,5 +40,5 @@ const deleteMoment = async (id: string): Promise<string> => {
   return id
 }
 
-export { deleteMoment, getMoments, postMoment }
+export { deleteMoment, getMomentById, getMoments, postMoment }
 
