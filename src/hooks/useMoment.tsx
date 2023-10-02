@@ -33,15 +33,10 @@ const useUpdateMoment = () => {
   const queryClient = useQueryClient()
   return useMutation(putMoment, {
     onSuccess: (moment: Moment) => {
-      queryClient.setQueryData(
-        ['moment', moment.id],
-        (old: Moment[] | undefined) => {
-          return old
-            ? old.map(m => m.id === moment.id ? moment : m)
-            : []
-        },
-      )
-      queryClient.invalidateQueries(['moment', moment.id])
+      queryClient.setQueryData(['moments'], (old: Moment[] | undefined) => {
+        return old ? old.map(m => (m.id === moment.id ? moment : m)) : []
+      })
+      queryClient.invalidateQueries(['moment', moment.id, 'moments'])
     },
   })
 }
@@ -59,5 +54,11 @@ const useDeleteMoment = () => {
   })
 }
 
-export { useCreateMoment, useDeleteMoment, useGetMoment, useGetMoments }
+export {
+  useCreateMoment,
+  useDeleteMoment,
+  useGetMoment,
+  useGetMoments,
+  useUpdateMoment,
+}
 
