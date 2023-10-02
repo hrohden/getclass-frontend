@@ -4,6 +4,7 @@ import {
   getMomentById,
   getMoments,
   postMoment,
+  putMoment,
 } from '../api/moment'
 import { Moment } from '../types/Moment'
 
@@ -23,6 +24,24 @@ const useCreateMoment = () => {
         return old ? [...old, moment] : [moment]
       })
       queryClient.invalidateQueries(['moments'])
+    },
+  })
+}
+
+// hook to update a moment
+const useUpdateMoment = () => {
+  const queryClient = useQueryClient()
+  return useMutation(putMoment, {
+    onSuccess: (moment: Moment) => {
+      queryClient.setQueryData(
+        ['moment', moment.id],
+        (old: Moment[] | undefined) => {
+          return old
+            ? old.map(m => m.id === moment.id ? moment : m)
+            : []
+        },
+      )
+      queryClient.invalidateQueries(['moment', moment.id])
     },
   })
 }

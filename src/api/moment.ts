@@ -30,6 +30,18 @@ const postMoment = async (moment: Moment): Promise<Moment> => {
   return response.json()
 }
 
+// put moment to backend server
+const putMoment = async (moment: Moment): Promise<Moment> => {
+  const body = JSON.stringify(moment)
+  const method = 'PUT'
+  const response = await fetch(`${URL_BASE}/moments/${moment.id}`, {
+    method,
+    headers,
+    body,
+  })
+  return response.json()
+}
+
 // delete moment from backend server
 const deleteMoment = async (id: string): Promise<string> => {
   const method = 'DELETE'
@@ -40,5 +52,5 @@ const deleteMoment = async (id: string): Promise<string> => {
   return id
 }
 
-export { deleteMoment, getMomentById, getMoments, postMoment }
+export { deleteMoment, getMomentById, getMoments, postMoment, putMoment }
 
