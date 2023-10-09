@@ -1,3 +1,4 @@
+import { Table } from 'flowbite-react'
 import { Link } from 'react-router-dom'
 import { useDeleteMoment } from '../hooks/useMoment'
 import { Moment } from '../types/Moment'
@@ -5,43 +6,33 @@ import { Moment } from '../types/Moment'
 const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
   const deleteMoment = useDeleteMoment()
   return (
-    <table className='w-full table-auto border-collapse border border-gray-400'>
-      <thead>
-        <tr>
-          <th className='border border-gray-400 bg-gray-200 px-4 py-2 text-gray-600'>
-            Title
-          </th>
-          <th className='border border-gray-400 bg-gray-200 px-4 py-2 text-gray-600'>
-            Description
-          </th>
-          <th className='border border-gray-400 bg-gray-200 px-4 py-2 text-gray-600'>
-            Actions
-          </th>
-        </tr>
-      </thead>
-      <tbody>
+    <Table striped>
+      <Table.Head>
+        <Table.HeadCell>Title</Table.HeadCell>
+        <Table.HeadCell>Description</Table.HeadCell>
+        <Table.HeadCell>Actions</Table.HeadCell>
+      </Table.Head>
+      <Table.Body>
         {moments?.map(moment => (
-          <tr key={moment.id}>
-            <td className='border border-gray-400 px-4 py-2'>{moment.title}</td>
-            <td className='border border-gray-400 px-4 py-2'>
-              {moment.description}
-            </td>
-            <td className='border border-gray-400 px-4 py-2'>
-              <Link to={`/edit/${moment.id}`}>
-                <i className='fa-fw fa-solid fa-trash'></i> Edit
-              </Link>
-              <button
+          <Table.Row key={moment.id}>
+            <Table.Cell>{moment.title}</Table.Cell>
+            <Table.Cell>{moment.description}</Table.Cell>
+            <Table.Cell className='flex gap-4'>
+              <Link to={`/edit/${moment.id}`}>Edit</Link>
+              <Link
+                to='#'
+                referrerPolicy='no-referrer'
                 onClick={async () => {
                   await deleteMoment.mutateAsync(moment.id!)
                 }}
               >
-                <i className='fa-fw fa-solid fa-trash'></i> Remove
-              </button>
-            </td>
-          </tr>
+                Remove
+              </Link>
+            </Table.Cell>
+          </Table.Row>
         ))}
-      </tbody>
-    </table>
+      </Table.Body>
+    </Table>
   )
 }
 
