@@ -1,3 +1,4 @@
+import { Button, Label, TextInput, Textarea } from 'flowbite-react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Moment } from '../types/Moment'
 
@@ -22,69 +23,39 @@ const MomentForm = ({
       className='flex w-full flex-col gap-4'
     >
       <div className='flex flex-col gap-2'>
-        <label
-          htmlFor='title'
-          className={`block font-bold ${
-            errors.title ? 'text-red-600' : 'text-gray-700'
-          }`}
-        >
-          Title
-        </label>
-        <input
-          type='text'
+        <Label htmlFor='title' value='Title' />
+        <TextInput
           id='title'
-          className={`focus:shadow-outline w-full appearance-none rounded border px-3 py-3 text-gray-700 shadow focus:outline-none ${
-            errors.title
-              ? 'border-red-600 shadow-red-300'
-              : 'border-gray-200 shadow-gray-300'
-          }`}
+          color={errors.title ? 'failure' : undefined}
+          helperText={errors.title ? 'This field is required.' : undefined}
+          type='text'
           {...register('title', { required: true })}
         />
-        {errors.title && (
-          <p className='text-red-600'>This field is required.</p>
-        )}
       </div>
       <div className='flex flex-col gap-2'>
-        <label htmlFor='headline' className='block font-bold text-gray-700'>
-          Headline
-        </label>
-        <input
-          type='text'
+        <Label htmlFor='headline' value='Headline' />
+        <TextInput
           id='headline'
-          className='focus:shadow-outline w-full appearance-none rounded border px-3 py-3 text-gray-700 shadow focus:outline-none'
+          color={errors.headline ? 'failure' : undefined}
+          helperText={errors.headline ? 'This field is required.' : undefined}
+          type='text'
           {...register('headline', { required: false })}
         />
       </div>
       <div className='flex flex-col gap-2'>
-        <label
-          htmlFor='description'
-          className={`block font-bold ${
-            errors.description ? 'text-red-600' : 'text-gray-700'
-          }`}
-        >
-          Description
-        </label>
-        <textarea
+        <Label htmlFor='description' value='Description' />
+        <Textarea
           id='description'
-          className={`focus:shadow-outline w-full appearance-none rounded border px-3 py-3 text-gray-700 shadow focus:outline-none ${
-            errors.description
-              ? 'border-red-600 shadow-red-300'
-              : 'border-gray-200 shadow-gray-300'
-          }`}
+          color={errors.description ? 'failure' : undefined}
+          helperText={
+            errors.description ? 'This field is required.' : undefined
+          }
           rows={4}
           {...register('description', { required: true })}
-        ></textarea>
-        {errors.description && (
-          <p className='text-red-600'>This field is required.</p>
-        )}
+        />
       </div>
       <div className='flex items-center justify-between'>
-        <button
-          type='submit'
-          className='focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none'
-        >
-          <i className='fa-fw fa-solid fa-plus mr-2'></i>Submit
-        </button>
+        <Button type='submit'>Save</Button>
       </div>
     </form>
   )
