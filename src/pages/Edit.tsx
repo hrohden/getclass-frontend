@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import MomentForm from '../components/MomentForm'
 import { useGetMoment, useUpdateMoment } from '../hooks/useMoment'
 import DefaultLayout from '../layouts/DefaultLayout'
@@ -8,6 +8,7 @@ const Edit = () => {
   const updateMoment = useUpdateMoment()
   const { id } = useParams()
   const { data, isLoading } = useGetMoment(id!)
+  const navigate = useNavigate()
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -15,13 +16,15 @@ const Edit = () => {
 
   return (
     <DefaultLayout
-      title='New moment'
+      title='Edit moment'
       description='Wanna create a new moment to never forget it anymore?'
     >
       <MomentForm
         moment={data!}
         submitForm={async (moment: Moment) => {
-          updateMoment.mutateAsync(moment)
+          await updateMoment.mutateAsync(moment)
+
+          navigate('/')
         }}
       ></MomentForm>
     </DefaultLayout>
