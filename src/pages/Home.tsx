@@ -1,3 +1,4 @@
+import NoMomentsToDisplayAlert from '../components/NoMomentsToDisplayAlert'
 import TableMoments from '../components/TableMoments'
 import { useGetMoments } from '../hooks/useMoment'
 import DefaultLayout from '../layouts/DefaultLayout'
@@ -14,9 +15,11 @@ const Home = () => {
       documentTitle='Moments'
       description='Here you can find all important moments in my life'
     >
-      {data?.length === 0 && <p>Currently, there are no moments to display</p>}
-
-      <TableMoments moments={data} />
+      {data?.length === 0 ? (
+        <NoMomentsToDisplayAlert />
+      ) : (
+        <TableMoments moments={data} />
+      )}
     </DefaultLayout>
   )
 }
