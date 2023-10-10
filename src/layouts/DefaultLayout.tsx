@@ -17,7 +17,12 @@ const DefaultLayout = (props: Props) => {
 
   return (
     <>
-      <h1 className='text-6xl font-bold tracking-tight'>{props.title}</h1>
+      <h1
+        className='text-6xl font-bold tracking-tight'
+        aria-roledescription='heading'
+      >
+        {props.title}
+      </h1>
       {props.description && (
         <p className='text-2xl font-semibold tracking-tight text-slate-400'>
           {props.description}
