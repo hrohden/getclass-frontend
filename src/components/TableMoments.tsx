@@ -1,4 +1,5 @@
 import { Table } from 'flowbite-react'
+import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { useDeleteMoment } from '../hooks/useMoment'
 import { Moment } from '../types/Moment'
@@ -24,6 +25,7 @@ const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
                 referrerPolicy='no-referrer'
                 onClick={async () => {
                   await deleteMoment.mutateAsync(moment.id!)
+                  toast.success('Moment removed')
                 }}
               >
                 Remove

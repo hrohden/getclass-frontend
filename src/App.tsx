@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './layouts/Layout'
@@ -43,6 +44,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+      <Toaster position='bottom-center' />
     </QueryClientProvider>
   )
 }

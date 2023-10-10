@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import MomentForm from '../components/MomentForm'
 import { useCreateMoment } from '../hooks/useMoment'
@@ -23,6 +24,7 @@ const New = () => {
         moment={moment}
         submitForm={async (moment: Moment) => {
           await createMoment.mutateAsync(moment)
+          toast.success('New moment created successfully!')
           navigate('/')
         }}
       ></MomentForm>

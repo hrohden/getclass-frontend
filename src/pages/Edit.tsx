@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 import MomentForm from '../components/MomentForm'
 import { useGetMoment, useUpdateMoment } from '../hooks/useMoment'
@@ -23,7 +24,7 @@ const Edit = () => {
         moment={data!}
         submitForm={async (moment: Moment) => {
           await updateMoment.mutateAsync(moment)
-
+          toast.success('Moment changed successfully!')
           navigate('/')
         }}
       ></MomentForm>
