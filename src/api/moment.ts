@@ -31,9 +31,9 @@ const postMoment = async (moment: Moment): Promise<Moment> => {
 }
 
 // put moment to backend server
-const putMoment = async (moment: Moment): Promise<Moment> => {
+const patchMoment = async (moment: Moment): Promise<Moment> => {
   const body = JSON.stringify(moment)
-  const method = 'PUT'
+  const method = 'PATCH'
   const response = await fetch(`${URL_BASE}/moments/${moment.id}`, {
     method,
     headers,
@@ -52,5 +52,5 @@ const deleteMoment = async (id: string): Promise<string> => {
   return id
 }
 
-export { deleteMoment, getMomentById, getMoments, postMoment, putMoment }
+export { deleteMoment, getMomentById, getMoments, patchMoment, postMoment }
 

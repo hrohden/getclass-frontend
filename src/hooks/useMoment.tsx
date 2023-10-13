@@ -3,8 +3,8 @@ import {
   deleteMoment,
   getMomentById,
   getMoments,
+  patchMoment,
   postMoment,
-  putMoment,
 } from '../api/moment'
 import { Moment } from '../types/Moment'
 
@@ -31,7 +31,7 @@ const useCreateMoment = () => {
 // hook to update a moment
 const useUpdateMoment = () => {
   const queryClient = useQueryClient()
-  return useMutation(putMoment, {
+  return useMutation(patchMoment, {
     onSuccess: (moment: Moment) => {
       // update moment in cache
       queryClient.setQueryData(['moment', { id: moment.id }], moment)
