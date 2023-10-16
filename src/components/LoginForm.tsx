@@ -2,25 +2,25 @@ import { Button, Label, TextInput } from 'flowbite-react'
 import { useForm } from 'react-hook-form'
 import { HiCheck, HiOutlineLockClosed, HiUser } from 'react-icons/hi'
 
-type LoginFormInputs = {
-  username: string
-  password: string
+type LoginFormProps = {
+  handleLogin: (inputs: LoginFormInputs) => void
 }
 
-const LoginForm = () => {
+const LoginForm = ({ handleLogin }: LoginFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>()
-
-  const onSubmit = (data: LoginFormInputs) => {
-    console.log(data)
-  }
+  } = useForm<LoginFormInputs>({
+    defaultValues: {
+      username: 'hrohden@gmail.com',
+      password: '1234',
+    },
+  })
 
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleLogin)}
       className='flex w-full flex-col gap-4 rounded-xl border border-gray-300 p-4 shadow-sm'
     >
       <div>

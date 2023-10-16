@@ -4,7 +4,11 @@ const Login = () => {
   return (
     <div className='flex justify-center'>
       <div className='w-96'>
-        <LoginForm />
+        <LoginForm
+          handleLogin={(data: LoginFormInputs) => {
+            console.log(data)
+          }}
+        />
       </div>
     </div>
   )
