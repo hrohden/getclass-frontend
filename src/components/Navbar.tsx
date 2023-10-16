@@ -1,14 +1,7 @@
 import { Link } from 'react-router-dom'
-import { useGetMoments } from '../hooks/useMoment'
 import NavbarItem from './NavbarItem'
 
 const Navbar = () => {
-  const { data, isLoading } = useGetMoments()
-
-  const allMomentsText = isLoading
-    ? 'All moments'
-    : `All moments (${data!.length})`
-
   return (
     <nav className='mb-4 w-full bg-gray-800'>
       <div className='container mx-auto flex items-center gap-4 py-1'>
@@ -19,8 +12,8 @@ const Navbar = () => {
           </Link>
         </h2>
         <ul className='flex'>
-          <NavbarItem item={{ id: '1', path: '/', icon: 'list' }}>
-            {allMomentsText}
+          <NavbarItem item={{ id: '1', path: '/all', icon: 'list' }}>
+            All moments
           </NavbarItem>
           <NavbarItem item={{ id: '2', path: '/new', icon: 'plus' }}>
             New moment

@@ -2,6 +2,7 @@ import { Toaster } from 'react-hot-toast'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Layout from './layouts/Layout'
+import AllMoments from './pages/AllMoments'
 import Edit from './pages/Edit'
 import Favorites from './pages/Favorites'
 import Home from './pages/Home'
@@ -25,6 +26,10 @@ function App() {
         {
           index: true,
           element: <Home />,
+        },
+        {
+          path: '/all',
+          element: <AllMoments />,
         },
         {
           path: '/new',
