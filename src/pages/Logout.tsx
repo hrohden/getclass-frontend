@@ -1,14 +1,16 @@
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDeleteAuthentication } from '../hooks/useAuthentication'
-import { Navigate } from 'react-router-dom'
 
 const Logout = () => {
   const deleteAuthentication = useDeleteAuthentication()
+  const navigate = useNavigate()
 
   useEffect(() => {
     deleteAuthentication.mutateAsync()
+    navigate('/')
   }, [])
 
-  return <Navigate to='/' />
+  return null
 }
 export default Logout
