@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useGetAuthentication } from '../hooks/useAuthentication'
 import NavbarItem from './NavbarItem'
 
 const Navbar = () => {
+  const getAuthentication = useGetAuthentication()
+  const isAuthenticated = getAuthentication?.data
   return (
     <nav className='mb-4 w-full bg-gray-800'>
       <div className='container mx-auto flex items-center gap-4 py-1'>
@@ -12,10 +15,24 @@ const Navbar = () => {
           </Link>
         </h2>
         <ul className='flex'>
-          <NavbarItem item={{ id: '1', path: '/all', icon: 'list' }}>
+          <NavbarItem
+            item={{
+              id: '1',
+              path: '/all',
+              icon: 'list',
+              display: isAuthenticated,
+            }}
+          >
             All moments
           </NavbarItem>
-          <NavbarItem item={{ id: '2', path: '/new', icon: 'plus' }}>
+          <NavbarItem
+            item={{
+              id: '2',
+              path: '/new',
+              icon: 'plus',
+              display: isAuthenticated,
+            }}
+          >
             New moment
           </NavbarItem>
           <NavbarItem
@@ -23,18 +40,36 @@ const Navbar = () => {
               id: '3',
               path: '/favorites',
               icon: 'heart',
+              display: isAuthenticated,
             }}
           >
             Favorites
           </NavbarItem>
         </ul>
         <ul className='flex'>
-          <NavbarItem item={{ id: '1', path: '/login', icon: 'list' }}>
-            Login
-          </NavbarItem>
-          <NavbarItem item={{ id: '2', path: '/logout', icon: 'plus' }}>
-            Logout
-          </NavbarItem>
+          {isAuthenticated ? (
+            <NavbarItem
+              item={{
+                id: '2',
+                path: '/logout',
+                icon: 'plus',
+                display: isAuthenticated,
+              }}
+            >
+              Logout
+            </NavbarItem>
+          ) : (
+            <NavbarItem
+              item={{
+                id: '1',
+                path: '/login',
+                icon: 'list',
+                display: !isAuthenticated,
+              }}
+            >
+              Login
+            </NavbarItem>
+          )}
         </ul>
       </div>
     </nav>

@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom'
 import { NavbarMenuItem } from '../types/NavbarMenuItem'
 
 const NavbarItem = ({
-  item: { id, path, icon },
+  item: { id, path, icon, display },
   children,
 }: {
   item: NavbarMenuItem
   children: React.ReactNode
 }) => {
-  return (
+  return display ? (
     <li className='flex items-stretch text-sm font-medium' key={id}>
       <NavLink
         className={({ isActive }) =>
@@ -24,6 +24,6 @@ const NavbarItem = ({
         {children}
       </NavLink>
     </li>
-  )
+  ) : null
 }
 export default NavbarItem
