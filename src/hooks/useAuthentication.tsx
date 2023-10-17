@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { deleteAuthentication, postAuthentication } from '../api/authentication'
 
 // defines the local storage key
@@ -9,18 +9,25 @@ const usePostAuthentication = () => {
   const queryClient = useQueryClient()
   return useMutation(postAuthentication, {
     onSuccess: (authenticationToken: AuthenticationToken) => {
-      queryClient.setQueryData('authentication', authenticationToken)
       localStorage.setItem(
         AUTHENTICATION_KEY,
         JSON.stringify(authenticationToken),
       )
+      queryClient.setQueryData(AUTHENTICATION_KEY, authenticationToken)
+      queryClient.invalidateQueries(AUTHENTICATION_KEY)
     },
   })
 }
 
 // hook function to check for authentication
-const useGetAuthentication = (): AuthenticationToken | undefined => {
-  return JSON.parse(localStorage.getItem(AUTHENTICATION_KEY) || 'null')
+const useGetAuthentication = () => {
+  return useQuery(AUTHENTICATION_KEY, () => {
+    const authenticationToken = localStorage.getItem(AUTHENTICATION_KEY)
+    if (authenticationToken) {
+      return JSON.parse(authenticationToken)
+    }
+    return null
+  })
 }
 
 // hook function to remove authentication
@@ -28,11 +35,11 @@ const useDeleteAuthentication = () => {
   const queryClient = useQueryClient()
   return useMutation(deleteAuthentication, {
     onSuccess: () => {
-      queryClient.setQueryData(AUTHENTICATION_KEY, null)
       localStorage.removeItem(AUTHENTICATION_KEY)
+      queryClient.setQueryData(AUTHENTICATION_KEY, null)
+      queryClient.invalidateQueries(AUTHENTICATION_KEY)
     },
   })
 }
 
 export { useDeleteAuthentication, useGetAuthentication, usePostAuthentication }
-
