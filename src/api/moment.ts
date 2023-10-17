@@ -1,56 +1,42 @@
+import axios from 'axios'
 import { Moment } from '../types/Moment'
 
 const URL_BASE = '/api'
 
 const headers = {
   'Content-Type': 'application/json',
+  Authentication: 'Bearer any-string-you-like',
 }
 
 // get all moments
 const getMoments = async (): Promise<Moment[]> => {
-  const response = await fetch(`${URL_BASE}/moments`)
-  return response.json()
+  const response = await axios.get(`${URL_BASE}/moments`, { headers })
+  return response.data
 }
 
 // get moment by id
 const getMomentById = async (id: string): Promise<Moment> => {
-  const response = await fetch(`${URL_BASE}/moments/${id}`)
-  return response.json()
+  const response = await axios.get(`${URL_BASE}/moments/${id}`, { headers })
+  return response.data
 }
 
 // post moment to backend server
 const postMoment = async (moment: Moment): Promise<Moment> => {
-  const body = JSON.stringify(moment)
-  const method = 'POST'
-  const response = await fetch(`${URL_BASE}/moments`, {
-    method,
-    headers,
-    body,
-  })
-  return response.json()
+  const response = await axios.post(`${URL_BASE}/moments`, moment)
+  return response.data
 }
 
 // put moment to backend server
 const patchMoment = async (moment: Moment): Promise<Moment> => {
-  const body = JSON.stringify(moment)
-  const method = 'PATCH'
-  const response = await fetch(`${URL_BASE}/moments/${moment.id}`, {
-    method,
-    headers,
-    body,
-  })
-  return response.json()
+  // const data = JSON.stringify(moment)
+  const response = await axios.patch(`${URL_BASE}/moments/${moment.id}`, moment)
+  return response.data
 }
 
 // delete moment from backend server
 const deleteMoment = async (id: string): Promise<string> => {
-  const method = 'DELETE'
-  await fetch(`${URL_BASE}/moments/${id}`, {
-    method,
-    headers,
-  })
+  await axios.delete(`${URL_BASE}/moments/${id}`, { headers })
   return id
 }
 
 export { deleteMoment, getMomentById, getMoments, patchMoment, postMoment }
-
