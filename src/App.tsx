@@ -1,7 +1,7 @@
 import { Toaster } from 'react-hot-toast'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Layout from './layouts/Layout'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './components/Navbar'
 import AllMoments from './pages/AllMoments'
 import Edit from './pages/Edit'
 import Favorites from './pages/Favorites'
@@ -20,45 +20,22 @@ function App() {
       },
     },
   })
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Layout />,
-      children: [
-        {
-          index: true,
-          element: <Home />,
-        },
-        {
-          path: '/all',
-          element: <AllMoments />,
-        },
-        {
-          path: '/new',
-          element: <New />,
-        },
-        {
-          path: '/favorites',
-          element: <Favorites />,
-        },
-        {
-          path: '/edit/:id',
-          element: <Edit />,
-        },
-        {
-          path: '/login',
-          element: <Login />,
-        },
-        {
-          path: '/logout',
-          element: <Logout />,
-        },
-      ],
-    },
-  ])
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Navbar />
+        <main className='container mx-auto flex flex-col gap-4'>
+          <Routes>
+            <Route element={<Home />} path='/' />
+            <Route element={<AllMoments />} path='/all' />
+            <Route element={<New />} path='/new' />
+            <Route element={<Favorites />} path='/favorites' />
+            <Route element={<Edit />} path='/edit/:id' />
+            <Route element={<Login />} path='/login' />
+            <Route element={<Logout />} path='/logout' />
+          </Routes>
+        </main>
+      </BrowserRouter>
       <Toaster position='bottom-center' />
     </QueryClientProvider>
   )
