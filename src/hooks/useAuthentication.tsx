@@ -19,7 +19,7 @@ const usePostAuthentication = () => {
 }
 
 // hook function to check for authentication
-const useAuthentication = (): AuthenticationToken | undefined => {
+const useGetAuthentication = (): AuthenticationToken | undefined => {
   return JSON.parse(localStorage.getItem(AUTHENTICATION_KEY) || 'null')
 }
 
@@ -34,4 +34,5 @@ const useDeleteAuthentication = () => {
   })
 }
 
-export { useAuthentication, useDeleteAuthentication, usePostAuthentication }
+export { useDeleteAuthentication, useGetAuthentication, usePostAuthentication }
+
