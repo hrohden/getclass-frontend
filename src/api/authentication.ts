@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const URL_BASE = '/api'
 
 const headers = {
@@ -8,14 +10,8 @@ const headers = {
 const postAuthentication = async (
   authentication: LoginFormInputs,
 ): Promise<AuthenticationToken> => {
-  const body = JSON.stringify(authentication)
-  const method = 'POST'
-  const response = await fetch(`${URL_BASE}/login`, {
-    method,
-    headers,
-    body,
-  })
-  return response.json()
+  const response = await axios.post(`${URL_BASE}/login`, authentication)
+  return response.data
 }
 
 // delete authentication from the backend server
@@ -28,4 +24,3 @@ const deleteAuthentication = async (): Promise<void> => {
 }
 
 export { deleteAuthentication, postAuthentication }
-

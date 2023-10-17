@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { deleteAuthentication, postAuthentication } from '../api/authentication'
 
@@ -9,10 +10,19 @@ const usePostAuthentication = () => {
   const queryClient = useQueryClient()
   return useMutation(postAuthentication, {
     onSuccess: (authenticationToken: AuthenticationToken) => {
+      // add the authentication token to the axios header
+      axios.interceptors.request.use(config => {
+        config.headers.Authorization = `Bearer ${authenticationToken.accessToken}`
+        return config
+      })
+
+      // store the authentication token in local storage
       localStorage.setItem(
         AUTHENTICATION_KEY,
         JSON.stringify(authenticationToken),
       )
+
+      // set the authentication token in the react query cache
       queryClient.setQueryData(AUTHENTICATION_KEY, authenticationToken)
       queryClient.invalidateQueries(AUTHENTICATION_KEY)
     },

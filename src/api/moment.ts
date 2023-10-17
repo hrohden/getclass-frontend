@@ -5,7 +5,6 @@ const URL_BASE = '/api'
 
 const headers = {
   'Content-Type': 'application/json',
-  Authentication: 'Bearer any-string-you-like',
 }
 
 // get all moments
