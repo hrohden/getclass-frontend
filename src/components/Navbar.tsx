@@ -28,6 +28,14 @@ const Navbar = () => {
             Favorites
           </NavbarItem>
         </ul>
+        <ul className='flex'>
+          <NavbarItem item={{ id: '1', path: '/login', icon: 'list' }}>
+            Login
+          </NavbarItem>
+          <NavbarItem item={{ id: '2', path: '/logout', icon: 'plus' }}>
+            Logout
+          </NavbarItem>
+        </ul>
       </div>
     </nav>
   )

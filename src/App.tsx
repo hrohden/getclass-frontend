@@ -6,6 +6,8 @@ import AllMoments from './pages/AllMoments'
 import Edit from './pages/Edit'
 import Favorites from './pages/Favorites'
 import Home from './pages/Home'
+import Login from './pages/Login'
+import Logout from './pages/Logout'
 import New from './pages/New'
 
 function App() {
@@ -42,6 +44,14 @@ function App() {
         {
           path: '/edit/:id',
           element: <Edit />,
+        },
+        {
+          path: '/login',
+          element: <Login />,
+        },
+        {
+          path: '/logout',
+          element: <Logout />,
         },
       ],
     },
