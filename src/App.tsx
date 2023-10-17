@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import New from './pages/New'
+import ProtectedRoutes from './utils/ProtectedRoutes'
 
 function App() {
   const queryClient = new QueryClient({
@@ -26,13 +27,18 @@ function App() {
         <Navbar />
         <main className='container mx-auto flex flex-col gap-4'>
           <Routes>
-            <Route element={<Home />} path='/' />
-            <Route element={<AllMoments />} path='/all' />
-            <Route element={<New />} path='/new' />
-            <Route element={<Favorites />} path='/favorites' />
-            <Route element={<Edit />} path='/edit/:id' />
+            {/* Public routes */}
+            <Route element={<Home />} index />
             <Route element={<Login />} path='/login' />
-            <Route element={<Logout />} path='/logout' />
+
+            {/* Protected routes */}
+            <Route element={<ProtectedRoutes />}>
+              <Route element={<AllMoments />} path='/all' />
+              <Route element={<Edit />} path='/edit/:id' />
+              <Route element={<Favorites />} path='/favorites' />
+              <Route element={<Logout />} path='/logout' />
+              <Route element={<New />} path='/new' />
+            </Route>
           </Routes>
         </main>
       </BrowserRouter>
