@@ -18,4 +18,14 @@ const postAuthentication = async (
   return response.json()
 }
 
-export { postAuthentication }
+// delete authentication from the backend server
+const deleteAuthentication = async (): Promise<void> => {
+  const method = 'DELETE'
+  await fetch(`${URL_BASE}/logout`, {
+    method,
+    headers,
+  })
+}
+
+export { deleteAuthentication, postAuthentication }
+

@@ -2,9 +2,12 @@ import { useEffect } from 'react'
 import { useDeleteAuthentication } from '../hooks/useAuthentication'
 
 const Logout = () => {
+  const deleteAuthentication = useDeleteAuthentication()
+
   useEffect(() => {
-    useDeleteAuthentication()()
-  })
+    deleteAuthentication.mutateAsync()
+  }, [])
+  
   return <div>Logout</div>
 }
 export default Logout
