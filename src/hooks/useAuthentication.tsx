@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { deleteAuthentication, postAuthentication } from '../api/authentication'
 
@@ -8,8 +8,11 @@ const AUTHENTICATION_KEY = 'authentication'
 // hook function to post authentication
 const usePostAuthentication = () => {
   const queryClient = useQueryClient()
-  return useMutation(postAuthentication, {
-    onSuccess: (authenticationToken: AuthenticationToken) => {
+  return useMutation({
+    mutationFn: postAuthentication,
+    onSuccess: ({
+      data: authenticationToken,
+    }: AxiosResponse<AuthenticationToken>) => {
       // add the authentication token to the axios header
       axios.interceptors.request.use(config => {
         config.headers.Authorization = `Bearer ${authenticationToken.accessToken}`
