@@ -1,10 +1,10 @@
+import { useSelector } from 'react-redux'
 import NoMomentsToDisplayAlert from '../components/NoMomentsToDisplayAlert'
 import TableMoments from '../components/TableMoments'
-import { useGetMoments } from '../hooks/useMoment'
 import DefaultLayout from '../layouts/DefaultLayout'
 
 const AllMoments = () => {
-  const { data, isLoading, error } = useGetMoments()
+  const { data, isLoading, error } = useSelector(({ moments }) => moments)
 
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Something went wrong</p>
