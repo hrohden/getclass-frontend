@@ -1,16 +1,22 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import NoMomentsToDisplayAlert from '../components/NoMomentsToDisplayAlert'
 import TableMoments from '../components/TableMoments'
 import DefaultLayout from '../layouts/DefaultLayout'
+import { fetchMoments } from '../store/momentsSlice'
 import { AppStore } from '../types/AppStore'
 
 const AllMoments = () => {
-  const { data, isLoading, error } = useSelector(
-    (state: AppStore) => state.moments,
-  )
+  const isLoading = useSelector((state: AppStore) => state.moments.isLoading)
+  const dispatch = useDispatch()
+  const data = useSelector((state: AppStore) => state.moments.data)
 
-  if (isLoading === 'loading') return <p>Loading...</p>
-  if (error) return <p>Something went wrong</p>
+  useEffect(() => {
+    if (isLoading === 'idle') {
+      // @ts-ignore
+      dispatch(fetchMoments())
+    }
+  }, [isLoading, data])
 
   return (
     <DefaultLayout

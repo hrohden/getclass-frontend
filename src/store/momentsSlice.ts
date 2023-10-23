@@ -1,7 +1,6 @@
 import {
-  AnyAction,
-  Dispatch,
   SliceCaseReducers,
+  createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit'
 import { getMoments } from '../api/moment'
@@ -33,20 +32,24 @@ const momentsSlice = createSlice<
       return initialState
     },
   },
+  extraReducers: builder => {
+    builder.addCase(fetchMoments.pending, state => {
+      state.isLoading = 'idle'
+    })
+    builder.addCase(fetchMoments.fulfilled, (state, { payload }) => {
+      state.data = payload
+      state.isLoading = 'succeeded'
+    })
+    builder.addCase(fetchMoments.rejected, state => {
+      state.isLoading = 'failed'
+    })
+  },
 })
 
-export const getData = () => {
-  return async (dispatch: Dispatch<AnyAction>) => {
-    try {
-      // make an async call in the thunk
-      const moments = await getMoments()
-      // dispatch an action when we get the response back
-      dispatch(set(moments))
-    } catch (err) {
-      // If something went wrong, handle it here
-    }
-  }
-}
+export const fetchMoments = createAsyncThunk('moments/set', async () => {
+  const response = await getMoments()
+  return response
+})
 
 export const { add, clean, set } = momentsSlice.actions
 export default momentsSlice.reducer
