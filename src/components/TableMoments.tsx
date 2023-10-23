@@ -3,10 +3,13 @@ import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
 import { useDeleteMoment } from '../hooks/useMoment'
 import { Moment } from '../types/Moment'
+import NoMomentsToDisplayAlert from './NoMomentsToDisplayAlert'
 
 const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
   const deleteMoment = useDeleteMoment()
-  return (
+  return moments?.length === 0 ? (
+    <NoMomentsToDisplayAlert />
+  ) : (
     <Table striped>
       <Table.Head>
         <Table.HeadCell>Title</Table.HeadCell>

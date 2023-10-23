@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import NoMomentsToDisplayAlert from '../components/NoMomentsToDisplayAlert'
 import TableMoments from '../components/TableMoments'
 import DefaultLayout from '../layouts/DefaultLayout'
 import { fetchMoments } from '../store/momentsSlice'
@@ -24,11 +23,8 @@ const AllMoments = () => {
       documentTitle='Moments'
       description='Here you can find all important moments in my life'
     >
-      {data.length === 0 ? (
-        <NoMomentsToDisplayAlert />
-      ) : (
-        <TableMoments moments={data} />
-      )}
+      {isLoading === 'loading' && <p>Loading...</p>}
+      {isLoading === 'succeeded' && <TableMoments moments={data} />}
     </DefaultLayout>
   )
 }

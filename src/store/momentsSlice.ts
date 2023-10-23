@@ -34,7 +34,7 @@ const momentsSlice = createSlice<
   },
   extraReducers: builder => {
     builder.addCase(fetchMoments.pending, state => {
-      state.isLoading = 'idle'
+      state.isLoading = 'loading'
     })
     builder.addCase(fetchMoments.fulfilled, (state, { payload }) => {
       state.data = payload
