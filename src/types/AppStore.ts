@@ -1,5 +1,6 @@
+import { Loadable } from './Loadable'
 import { Moment } from './Moment'
 
 export type AppStore = {
-  moments: Moment[]
+  moments: Loadable<Moment[]>
 }

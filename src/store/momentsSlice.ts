@@ -5,21 +5,32 @@ import {
   createSlice,
 } from '@reduxjs/toolkit'
 import { getMoments } from '../api/moment'
+import { Loadable } from '../types/Loadable'
 import { Moment } from '../types/Moment'
 
-const momentsSlice = createSlice<Moment[], SliceCaseReducers<Moment[]>>({
+const initialState: Loadable<Moment[]> = {
+  data: [],
+  isLoading: false,
+}
+
+const momentsSlice = createSlice<
+  Loadable<Moment[]>,
+  SliceCaseReducers<Loadable<Moment[]>>
+>({
   name: 'moments',
-  initialState: [],
+  initialState,
   reducers: {
-    add: (prevState, { payload }) => {
-      const newState = [...prevState, payload]
-      return newState
+    add: (state, { payload }) => {
+      state.data?.push(payload)
     },
     set: (_prevState, { payload }) => {
-      return payload
+      return {
+        data: payload,
+        isLoading: false,
+      }
     },
     clean: () => {
-      return []
+      return initialState
     },
   },
 })
