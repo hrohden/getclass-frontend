@@ -45,6 +45,16 @@ const Navbar = () => {
           >
             Favorites
           </NavbarItem>
+          <NavbarItem
+            item={{
+              id: '4',
+              path: '/test',
+              icon: 'test',
+              display: isAuthenticated,
+            }}
+          >
+            Tests
+          </NavbarItem>
         </ul>
         <ul className='flex'>
           {isAuthenticated ? (

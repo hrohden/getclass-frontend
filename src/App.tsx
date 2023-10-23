@@ -10,8 +10,9 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Logout from './pages/Logout'
 import New from './pages/New'
-import ProtectedRoutes from './utils/ProtectedRoutes'
+import Tests from './pages/Tests'
 import store from './store'
+import ProtectedRoutes from './utils/ProtectedRoutes'
 
 function App() {
   const queryClient = new QueryClient({
@@ -41,6 +42,7 @@ function App() {
                 <Route element={<Favorites />} path='/favorites' />
                 <Route element={<Logout />} path='/logout' />
                 <Route element={<New />} path='/new' />
+                <Route element={<Tests />} path='/test' />
               </Route>
             </Routes>
           </main>
