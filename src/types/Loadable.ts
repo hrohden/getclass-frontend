@@ -1,5 +1,5 @@
 export type Loadable<T> = {
-  data: T | null
-  isLoading: boolean
+  data: T
+  isLoading: 'idle' | 'loading' | 'succeeded' | 'failed'
   error?: string | null
 }

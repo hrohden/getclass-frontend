@@ -10,7 +10,7 @@ import { Moment } from '../types/Moment'
 
 const initialState: Loadable<Moment[]> = {
   data: [],
-  isLoading: false,
+  isLoading: 'idle',
 }
 
 const momentsSlice = createSlice<
@@ -26,7 +26,7 @@ const momentsSlice = createSlice<
     set: (_prevState, { payload }) => {
       return {
         data: payload,
-        isLoading: false,
+        isLoading: 'succeeded',
       }
     },
     clean: () => {
