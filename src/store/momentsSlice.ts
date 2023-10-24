@@ -9,7 +9,7 @@ import { Moment } from '../types/Moment'
 
 const initialState: Loadable<Moment[]> = {
   data: [],
-  isLoading: 'idle',
+  status: 'idle',
 }
 
 const momentsSlice = createSlice<
@@ -25,7 +25,7 @@ const momentsSlice = createSlice<
     set: (_prevState, { payload }) => {
       return {
         data: payload,
-        isLoading: 'succeeded',
+        status: 'succeeded',
       }
     },
     clean: () => {
@@ -34,14 +34,14 @@ const momentsSlice = createSlice<
   },
   extraReducers: builder => {
     builder.addCase(fetchMoments.pending, state => {
-      state.isLoading = 'loading'
+      state.status = 'loading'
     })
     builder.addCase(fetchMoments.fulfilled, (state, { payload }) => {
       state.data = payload
-      state.isLoading = 'succeeded'
+      state.status = 'succeeded'
     })
     builder.addCase(fetchMoments.rejected, state => {
-      state.isLoading = 'failed'
+      state.status = 'failed'
     })
   },
 })

@@ -8,10 +8,10 @@ import { Moment } from '../types/Moment'
 const Edit = () => {
   const updateMoment = useUpdateMoment()
   const { id } = useParams()
-  const { data, isLoading } = useGetMoment(id!)
+  const { data, status } = useGetMoment(id!)
   const navigate = useNavigate()
 
-  if (isLoading) {
+  if (status) {
     return <p>Loading...</p>
   }
 

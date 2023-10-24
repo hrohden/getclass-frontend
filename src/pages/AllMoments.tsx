@@ -6,16 +6,16 @@ import { fetchMoments } from '../store/momentsSlice'
 import { AppStore } from '../types/AppStore'
 
 const AllMoments = () => {
-  const isLoading = useSelector((state: AppStore) => state.moments.isLoading)
+  const status = useSelector((state: AppStore) => state.moments.status)
   const dispatch = useDispatch()
   const data = useSelector((state: AppStore) => state.moments.data)
 
   useEffect(() => {
-    if (isLoading === 'idle') {
+    if (status === 'idle') {
       // @ts-ignore
       dispatch(fetchMoments())
     }
-  }, [isLoading, data])
+  }, [status, data])
 
   return (
     <DefaultLayout
@@ -23,8 +23,8 @@ const AllMoments = () => {
       documentTitle='Moments'
       description='Here you can find all important moments in my life'
     >
-      {isLoading === 'loading' && <p>Loading...</p>}
-      {isLoading === 'succeeded' && <TableMoments moments={data} />}
+      {status === 'loading' && <p>Loading...</p>}
+      {status === 'succeeded' && <TableMoments moments={data} />}
     </DefaultLayout>
   )
 }
