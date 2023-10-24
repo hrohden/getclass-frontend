@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios'
 import { Alert, Button, Label, TextInput } from 'flowbite-react'
 import { useForm } from 'react-hook-form'
 import {
@@ -7,14 +6,14 @@ import {
   HiOutlineLockClosed,
   HiUser,
 } from 'react-icons/hi'
-import { usePostAuthentication } from '../hooks/useAuthentication'
+import { useDispatch } from 'react-redux'
+import { loginThunk } from '../store/identitySlice'
 
 const LoginForm = () => {
-  const postAuthentication = usePostAuthentication()
+  const dispatch = useDispatch()
 
   const {
     register,
-    setError,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>({
@@ -27,13 +26,8 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit(async (loginForm: LoginFormInputs) => {
-        postAuthentication
-          .mutateAsync(loginForm)
-          .catch(({ response }: AxiosError<AuthenticationError>) => {
-            setError('root', { message: response?.data.message })
-            setError('username', { type: 'value' })
-            setError('password', { type: 'value' })
-          })
+        // @ts-ignore
+        dispatch(loginThunk(loginForm))
       })}
       className='flex w-full flex-col gap-4 rounded-xl border border-gray-300 p-4 shadow-sm'
     >

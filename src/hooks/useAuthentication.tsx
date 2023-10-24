@@ -12,7 +12,7 @@ const usePostAuthentication = () => {
     mutationFn: postAuthentication,
     onSuccess: ({
       data: authenticationToken,
-    }: AxiosResponse<AuthenticationToken>) => {
+    }: AxiosResponse<Authentication>) => {
       // add the authentication token to the axios header
       axios.interceptors.request.use(config => {
         config.headers.Authorization = `Bearer ${authenticationToken.accessToken}`

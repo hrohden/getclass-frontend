@@ -1,8 +1,11 @@
+import { useSelector } from 'react-redux'
 import { Navigate, Outlet } from 'react-router-dom'
-import { useGetAuthentication } from '../hooks/useAuthentication'
+import { AppStore } from '../types/AppStore'
 
 const ProtectedRoutes = () => {
-  const getAuthentication = useGetAuthentication()
-  return getAuthentication?.data ? <Outlet /> : <Navigate to='/login' />
+  const isAuthenticated = useSelector(
+    (state: AppStore) => state.identity.isAuthenticated,
+  )
+  return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
 }
 export default ProtectedRoutes

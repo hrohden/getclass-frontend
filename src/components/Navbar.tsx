@@ -1,10 +1,12 @@
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useGetAuthentication } from '../hooks/useAuthentication'
+import { AppStore } from '../types/AppStore'
 import NavbarItem from './NavbarItem'
 
 const Navbar = () => {
-  const getAuthentication = useGetAuthentication()
-  const isAuthenticated = getAuthentication?.data
+  const isAuthenticated = useSelector(
+    (state: AppStore) => state.identity.isAuthenticated,
+  )
   return (
     <nav className='mb-4 w-full bg-gray-800'>
       <div className='container mx-auto flex items-center gap-4 py-1'>
