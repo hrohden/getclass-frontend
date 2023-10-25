@@ -35,7 +35,7 @@ const Edit = () => {
             // @ts-ignore
             dispatch(updateMomentThunk(moment))
             toast.success('Moment changed successfully!')
-            navigate('/')
+            navigate('/all')
           }}
         ></MomentForm>
       )}
