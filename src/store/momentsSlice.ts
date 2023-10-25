@@ -3,7 +3,12 @@ import {
   createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit'
-import { deleteMoment, getMoments, postMoment } from '../api/moment'
+import {
+  deleteMoment,
+  getMoments,
+  patchMoment,
+  postMoment,
+} from '../api/moment'
 import { Loadable } from '../types/Loadable'
 import { Moment } from '../types/Moment'
 
@@ -63,6 +68,18 @@ const momentsSlice = createSlice<
     builder.addCase(deleteMomentThunk.rejected, state => {
       state.status = 'failed'
     })
+    builder.addCase(updateMomentThunk.pending, state => {
+      state.status = 'loading'
+    })
+    builder.addCase(updateMomentThunk.fulfilled, (state, { payload }) => {
+      state.data = state.data?.map(moment =>
+        moment.id === payload.id ? payload : moment,
+      )
+      state.status = 'succeeded'
+    })
+    builder.addCase(updateMomentThunk.rejected, state => {
+      state.status = 'failed'
+    })
   },
 })
 
@@ -83,6 +100,14 @@ export const deleteMomentThunk = createAsyncThunk(
   'moments/delete',
   async (id: string) => {
     const response = await deleteMoment(id)
+    return response
+  },
+)
+
+export const updateMomentThunk = createAsyncThunk(
+  'moments/update',
+  async (moment: Moment) => {
+    const response = await patchMoment(moment)
     return response
   },
 )
