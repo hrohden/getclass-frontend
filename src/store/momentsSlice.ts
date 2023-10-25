@@ -3,7 +3,7 @@ import {
   createAsyncThunk,
   createSlice,
 } from '@reduxjs/toolkit'
-import { getMoments } from '../api/moment'
+import { deleteMoment, getMoments, postMoment } from '../api/moment'
 import { Loadable } from '../types/Loadable'
 import { Moment } from '../types/Moment'
 
@@ -43,6 +43,26 @@ const momentsSlice = createSlice<
     builder.addCase(fetchMoments.rejected, state => {
       state.status = 'failed'
     })
+    builder.addCase(createMoment.pending, state => {
+      state.status = 'loading'
+    })
+    builder.addCase(createMoment.fulfilled, (state, { payload }) => {
+      state.data?.push(payload)
+      state.status = 'succeeded'
+    })
+    builder.addCase(createMoment.rejected, state => {
+      state.status = 'failed'
+    })
+    builder.addCase(deleteMomentThunk.pending, state => {
+      state.status = 'loading'
+    })
+    builder.addCase(deleteMomentThunk.fulfilled, (state, { payload }) => {
+      state.data = state.data?.filter(moment => moment.id !== payload)
+      state.status = 'succeeded'
+    })
+    builder.addCase(deleteMomentThunk.rejected, state => {
+      state.status = 'failed'
+    })
   },
 })
 
@@ -50,6 +70,22 @@ export const fetchMoments = createAsyncThunk('moments/set', async () => {
   const response = await getMoments()
   return response
 })
+
+export const createMoment = createAsyncThunk(
+  'moments/add',
+  async (moment: Moment) => {
+    const response = await postMoment(moment)
+    return response
+  },
+)
+
+export const deleteMomentThunk = createAsyncThunk(
+  'moments/delete',
+  async (id: string) => {
+    const response = await deleteMoment(id)
+    return response
+  },
+)
 
 export const { add, clean, set } = momentsSlice.actions
 export default momentsSlice.reducer

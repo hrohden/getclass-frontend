@@ -1,12 +1,13 @@
 import { Table } from 'flowbite-react'
 import toast from 'react-hot-toast'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useDeleteMoment } from '../hooks/useMoment'
+import { deleteMomentThunk } from '../store/momentsSlice'
 import { Moment } from '../types/Moment'
 import NoMomentsToDisplayAlert from './NoMomentsToDisplayAlert'
 
 const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
-  const deleteMoment = useDeleteMoment()
+  const dispatch = useDispatch()
   return moments?.length === 0 ? (
     <NoMomentsToDisplayAlert />
   ) : (
@@ -17,17 +18,18 @@ const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
         <Table.HeadCell>Actions</Table.HeadCell>
       </Table.Head>
       <Table.Body>
-        {moments?.map(moment => (
-          <Table.Row key={moment.id}>
-            <Table.Cell>{moment.title}</Table.Cell>
-            <Table.Cell>{moment.description}</Table.Cell>
+        {moments?.map(({ id, title, description }) => (
+          <Table.Row key={id}>
+            <Table.Cell>{title}</Table.Cell>
+            <Table.Cell>{description}</Table.Cell>
             <Table.Cell className='flex gap-4'>
-              <Link to={`/edit/${moment.id}`}>Edit</Link>
+              <Link to={`/edit/${id}`}>Edit</Link>
               <Link
                 to='#'
                 referrerPolicy='no-referrer'
                 onClick={async () => {
-                  await deleteMoment.mutateAsync(moment.id!)
+                  // @ts-ignore
+                  dispatch(deleteMomentThunk(id))
                   toast.success('Moment removed')
                 }}
               >
