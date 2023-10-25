@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import { patchMoment } from '../api/moment'
 import MomentForm from '../components/MomentForm'
 import DefaultLayout from '../layouts/DefaultLayout'
 import { selectMomentByIdThunk } from '../store/momentSlice'
@@ -12,12 +13,13 @@ const Edit = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { data, status } = useSelector((state: AppStore) => state.moment)
 
   useEffect(() => {
     // @ts-ignore
     dispatch(selectMomentByIdThunk(id))
   }, [])
+
+  const { data, status } = useSelector((state: AppStore) => state.moment)
 
   return (
     <DefaultLayout
@@ -30,7 +32,8 @@ const Edit = () => {
         <MomentForm
           moment={data!}
           submitForm={async (moment: Moment) => {
-            // await updateMoment.mutateAsync(moment)
+            // @ts-ignore
+            dispatch(patchMoment(moment))
             toast.success('Moment changed successfully!')
             navigate('/')
           }}
