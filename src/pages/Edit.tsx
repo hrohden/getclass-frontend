@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { patchMoment } from '../api/moment'
 import MomentForm from '../components/MomentForm'
 import DefaultLayout from '../layouts/DefaultLayout'
 import { selectMomentByIdThunk } from '../store/momentSlice'
+import { updateMomentThunk } from '../store/momentsSlice'
 import { AppStore } from '../types/AppStore'
 import { Moment } from '../types/Moment'
 
@@ -33,7 +33,7 @@ const Edit = () => {
           moment={data!}
           submitForm={async (moment: Moment) => {
             // @ts-ignore
-            dispatch(patchMoment(moment))
+            dispatch(updateMomentThunk(moment))
             toast.success('Moment changed successfully!')
             navigate('/')
           }}
