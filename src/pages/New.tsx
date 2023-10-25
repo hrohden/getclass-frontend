@@ -7,7 +7,6 @@ import { createMoment } from '../store/momentsSlice'
 import { Moment } from '../types/Moment'
 
 const New = () => {
-  // const createMoment = useCreateMoment()
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const moment = {
