@@ -19,16 +19,6 @@ const Navbar = () => {
         <ul className='flex'>
           <NavbarItem
             item={{
-              id: '1',
-              path: '/all',
-              icon: 'list',
-              display: isAuthenticated,
-            }}
-          >
-            All moments
-          </NavbarItem>
-          <NavbarItem
-            item={{
               id: '2',
               path: '/new',
               icon: 'plus',
@@ -71,16 +61,28 @@ const Navbar = () => {
               Logout
             </NavbarItem>
           ) : (
-            <NavbarItem
-              item={{
-                id: '1',
-                path: '/login',
-                icon: 'list',
-                display: !isAuthenticated,
-              }}
-            >
-              Login
-            </NavbarItem>
+            <>
+              <NavbarItem
+                item={{
+                  id: '1',
+                  path: '/all',
+                  icon: 'list',
+                  display: !isAuthenticated,
+                }}
+              >
+                All moments
+              </NavbarItem>
+              <NavbarItem
+                item={{
+                  id: '1',
+                  path: '/login',
+                  icon: 'list',
+                  display: !isAuthenticated,
+                }}
+              >
+                Login
+              </NavbarItem>
+            </>
           )}
         </ul>
       </div>

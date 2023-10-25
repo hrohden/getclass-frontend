@@ -22,11 +22,11 @@ function App() {
           <Routes>
             {/* Public routes */}
             <Route element={<Home />} index />
+            <Route element={<AllMoments />} path='/all' />
             <Route element={<Login />} path='/login' />
 
             {/* Protected routes */}
             <Route element={<ProtectedRoutes />}>
-              <Route element={<AllMoments />} path='/all' />
               <Route element={<Edit />} path='/edit/:id' />
               <Route element={<Favorites />} path='/favorites' />
               <Route element={<Logout />} path='/logout' />
