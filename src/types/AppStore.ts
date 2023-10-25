@@ -8,5 +8,6 @@ export type Identity = {
 
 export type AppStore = {
   moments: Loadable<Moment[]>
+  moment: Loadable<Moment>
   identity: Identity
 }
