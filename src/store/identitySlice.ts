@@ -14,13 +14,6 @@ const identitySlice = createSlice<Identity, SliceCaseReducers<Identity>>({
   name: 'identity',
   initialState,
   reducers: {
-    login: (_prevState, { payload }) => {
-      return {
-        isAuthenticated: true,
-        userName: payload.userName,
-        accessToken: payload.accessToken,
-      }
-    },
     logout: () => {
       return initialState
     },
