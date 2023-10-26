@@ -1,5 +1,5 @@
-import { Button, Checkbox, Label, Select, Table } from 'flowbite-react'
-import { useState } from 'react'
+import { Checkbox, Label, Select, Table } from 'flowbite-react'
+import { useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -13,32 +13,28 @@ type SortConfig = {
 }
 
 const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
-  const [listMoments, setListMoments] = useState<Moment[] | undefined>(moments)
   const [sortConfig, setSortConfig] = useState<SortConfig>({
     key: 'title',
     directionAsc: true,
   })
-  const dispatch = useDispatch()
-  const handleSort = () => {
-    setListMoments(prevState => {
-      let newState = prevState ? [...prevState] : []
-      let ascOrder = sortConfig.directionAsc ? 1 : -1
-      newState.sort((a, b) => {
-        // @ts-ignore
-        if (a[sortConfig.key] > b[sortConfig.key]) return 1 * ascOrder
-        // @ts-ignore
-        if (a[sortConfig.key] < b[sortConfig.key]) return -1 * ascOrder
-        return 0
-      })
-      return newState
+  const sortedMoments = useMemo(() => {
+    let sortedMoments = moments ? [...moments] : []
+    let ascOrder = sortConfig.directionAsc ? 1 : -1
+    sortedMoments.sort((a, b) => {
+      // @ts-ignore
+      if (a[sortConfig.key] > b[sortConfig.key]) return 1 * ascOrder
+      // @ts-ignore
+      if (a[sortConfig.key] < b[sortConfig.key]) return -1 * ascOrder
+      return 0
     })
-  }
+    return sortedMoments
+  }, [moments, sortConfig])
+  const dispatch = useDispatch()
   return moments?.length === 0 ? (
     <NoMomentsToDisplayAlert />
   ) : (
     <>
       <div className='mb-4 flex items-center gap-4'>
-        <Button onClick={handleSort}>Sort</Button>
         <Select
           onChange={e =>
             setSortConfig(prevState => {
@@ -72,7 +68,7 @@ const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
           <Table.HeadCell>Actions</Table.HeadCell>
         </Table.Head>
         <Table.Body>
-          {listMoments?.map(({ id, title, headline, description }) => (
+          {sortedMoments?.map(({ id, title, headline, description }) => (
             <Table.Row key={id}>
               <Table.Cell>{title}</Table.Cell>
               <Table.Cell>{headline}</Table.Cell>
