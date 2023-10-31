@@ -2,7 +2,7 @@ import { Checkbox, Label, Select, Table } from 'flowbite-react'
 import { useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link } from 'react-router-dom'
-import { useDeleteMomentMutation } from '../store/apiSlice'
+import { useDeleteMomentMutation } from '../store/moments'
 import { Moment } from '../types/Moment'
 import NoMomentsToDisplayAlert from './NoMomentsToDisplayAlert'
 

@@ -5,7 +5,7 @@ import DefaultLayout from '../layouts/DefaultLayout'
 import {
   useGetMomentByIdQuery,
   useUpdateMomentMutation,
-} from '../store/apiSlice'
+} from '../store/moments'
 import { Moment } from '../types/Moment'
 
 const Edit = () => {

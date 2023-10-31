@@ -3,8 +3,8 @@ import { Moment } from '../types/Moment'
 
 const type = 'Moments'
 
-export const momentsApi = createApi({
-  reducerPath: 'api',
+export const moments = createApi({
+  reducerPath: 'moments',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   endpoints: builder => ({
     getMoments: builder.query<Moment[], void>({
@@ -56,4 +56,4 @@ export const {
   useCreateMomentMutation,
   useUpdateMomentMutation,
   useDeleteMomentMutation,
-} = momentsApi
+} = moments

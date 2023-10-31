@@ -1,17 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { momentsApi } from './apiSlice'
-import momentSlice from './momentSlice'
-import momentsSlice from './momentsSlice'
+import { moments } from './moments'
 
 const store = configureStore({
   reducer: {
-    moments: momentsSlice,
-    moment: momentSlice,
-    [momentsApi.reducerPath]: momentsApi.reducer,
+    [moments.reducerPath]: moments.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(momentsApi.middleware),
+    getDefaultMiddleware().concat(moments.middleware),
 })
 
 setupListeners(store.dispatch)

@@ -2,7 +2,7 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import MomentForm from '../components/MomentForm'
 import DefaultLayout from '../layouts/DefaultLayout'
-import { useCreateMomentMutation } from '../store/apiSlice'
+import { useCreateMomentMutation } from '../store/moments'
 import { Moment } from '../types/Moment'
 
 const New = () => {

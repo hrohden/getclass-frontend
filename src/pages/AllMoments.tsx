@@ -1,6 +1,6 @@
 import TableMoments from '../components/TableMoments'
 import DefaultLayout from '../layouts/DefaultLayout'
-import { useGetMomentsQuery } from '../store/apiSlice'
+import { useGetMomentsQuery } from '../store/moments'
 
 const AllMoments = () => {
   const { data, isLoading } = useGetMomentsQuery()
