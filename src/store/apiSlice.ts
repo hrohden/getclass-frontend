@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { Moment } from '../types/Moment'
 
+const type = 'Moments'
+
 export const momentsApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
@@ -11,15 +13,15 @@ export const momentsApi = createApi({
       providesTags: result =>
         result
           ? [
-              ...result.map(({ id }) => ({ type: 'Moments', id }) as const),
-              { type: 'Moments', id: 'LIST' },
+              ...result.map(({ id }) => ({ type, id }) as const),
+              { type, id: 'LIST' },
             ]
-          : [{ type: 'Moments', id: 'LIST' }],
+          : [{ type, id: 'LIST' }],
     }),
     getMomentById: builder.query<Moment, string>({
       query: id => `/moments/${id}`,
       // @ts-ignore
-      providesTags: (result, error, id) => [{ type: 'Moments', id }],
+      providesTags: (result, error, id) => [{ type, id }],
     }),
     createMoment: builder.mutation<Moment, Moment>({
       query: body => ({
@@ -35,7 +37,7 @@ export const momentsApi = createApi({
         body,
       }),
       // @ts-ignore
-      invalidatesTags: ({ id }) => [{ type: 'Moments', id }],
+      invalidatesTags: ({ id }) => [{ type, id }],
     }),
     deleteMoment: builder.mutation<void, string>({
       query: id => ({
@@ -43,7 +45,7 @@ export const momentsApi = createApi({
         method: 'DELETE',
       }),
       // @ts-ignore
-      invalidatesTags: ({ id }) => [{ type: 'Moments', id }],
+      invalidatesTags: ({ id }) => [{ type, id }],
     }),
   }),
 })
