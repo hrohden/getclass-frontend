@@ -5,11 +5,21 @@ export const momentsApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   endpoints: builder => ({
-    getMoments: builder.query({
+    getMoments: builder.query<Moment[], void>({
       query: () => '/moments',
+      // @ts-ignore
+      providesTags: result =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Moments', id }) as const),
+              { type: 'Moments', id: 'LIST' },
+            ]
+          : [{ type: 'Moments', id: 'LIST' }],
     }),
-    getMomentById: builder.query({
-      query: (id: string) => `/moments/${id}`,
+    getMomentById: builder.query<Moment, string>({
+      query: id => `/moments/${id}`,
+      // @ts-ignore
+      providesTags: (result, error, id) => [{ type: 'Moments', id }],
     }),
     createMoment: builder.mutation<Moment, Moment>({
       query: body => ({
@@ -18,6 +28,23 @@ export const momentsApi = createApi({
         body,
       }),
     }),
+    updateMoment: builder.mutation<Moment, Partial<Moment>>({
+      query: ({ id, ...body }) => ({
+        url: `/moments/${id}`,
+        method: 'PATCH',
+        body,
+      }),
+      // @ts-ignore
+      invalidatesTags: ({ id }) => [{ type: 'Moments', id }],
+    }),
+    deleteMoment: builder.mutation<void, string>({
+      query: id => ({
+        url: `/moments/${id}`,
+        method: 'DELETE',
+      }),
+      // @ts-ignore
+      invalidatesTags: ({ id }) => [{ type: 'Moments', id }],
+    }),
   }),
 })
 
@@ -25,4 +52,6 @@ export const {
   useGetMomentsQuery,
   useGetMomentByIdQuery,
   useCreateMomentMutation,
+  useUpdateMomentMutation,
+  useDeleteMomentMutation,
 } = momentsApi

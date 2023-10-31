@@ -1,9 +1,8 @@
 import { Checkbox, Label, Select, Table } from 'flowbite-react'
 import { useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { deleteMomentThunk } from '../store/momentsSlice'
+import { useDeleteMomentMutation } from '../store/apiSlice'
 import { Moment } from '../types/Moment'
 import NoMomentsToDisplayAlert from './NoMomentsToDisplayAlert'
 
@@ -29,7 +28,7 @@ const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
     })
     return sortedMoments
   }, [moments, sortConfig])
-  const dispatch = useDispatch()
+  const [deleteMoment] = useDeleteMomentMutation()
   return moments?.length === 0 ? (
     <NoMomentsToDisplayAlert />
   ) : (
@@ -79,8 +78,7 @@ const TableMoments = ({ moments }: { moments: Moment[] | undefined }) => {
                   to='#'
                   referrerPolicy='no-referrer'
                   onClick={async () => {
-                    // @ts-ignore
-                    dispatch(deleteMomentThunk(id))
+                    deleteMoment(id!)
                     toast.success('Moment removed')
                   }}
                 >

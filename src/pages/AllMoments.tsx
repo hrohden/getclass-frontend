@@ -3,7 +3,7 @@ import DefaultLayout from '../layouts/DefaultLayout'
 import { useGetMomentsQuery } from '../store/apiSlice'
 
 const AllMoments = () => {
-  const { data, isLoading } = useGetMomentsQuery({})
+  const { data, isLoading } = useGetMomentsQuery()
 
   return (
     <DefaultLayout
