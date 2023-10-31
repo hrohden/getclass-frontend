@@ -6,12 +6,9 @@ import AllMoments from './pages/AllMoments'
 import Edit from './pages/Edit'
 import Favorites from './pages/Favorites'
 import Home from './pages/Home'
-import Login from './pages/Login'
-import Logout from './pages/Logout'
 import New from './pages/New'
 import Tests from './pages/Tests'
 import store from './store'
-import ProtectedRoutes from './utils/ProtectedRoutes'
 
 function App() {
   return (
@@ -20,19 +17,12 @@ function App() {
         <Navbar />
         <main className='container mx-auto flex flex-col gap-4'>
           <Routes>
-            {/* Public routes */}
             <Route element={<Home />} index />
             <Route element={<AllMoments />} path='/all' />
-            <Route element={<Login />} path='/login' />
-
-            {/* Protected routes */}
-            <Route element={<ProtectedRoutes />}>
-              <Route element={<Edit />} path='/edit/:id' />
-              <Route element={<Favorites />} path='/favorites' />
-              <Route element={<Logout />} path='/logout' />
-              <Route element={<New />} path='/new' />
-              <Route element={<Tests />} path='/test' />
-            </Route>
+            <Route element={<Edit />} path='/edit/:id' />
+            <Route element={<Favorites />} path='/favorites' />
+            <Route element={<New />} path='/new' />
+            <Route element={<Tests />} path='/test' />
           </Routes>
         </main>
       </BrowserRouter>
