@@ -1,14 +1,13 @@
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import MomentForm from '../components/MomentForm'
 import DefaultLayout from '../layouts/DefaultLayout'
-import { createMoment } from '../store/momentsSlice'
+import { useCreateMomentMutation } from '../store/apiSlice'
 import { Moment } from '../types/Moment'
 
 const New = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const [createMoment] = useCreateMomentMutation()
   const moment = {
     title: '',
     headline: '',
@@ -24,8 +23,7 @@ const New = () => {
       <MomentForm
         moment={moment}
         submitForm={async (moment: Moment) => {
-          // @ts-ignore
-          dispatch(createMoment(moment))
+          createMoment(moment)
           toast.success('New moment created successfully!')
           navigate('/')
         }}
